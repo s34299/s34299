@@ -3,244 +3,357 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Engineering Portfolio - Natthaphon Chiangrang">
-    <title>Engineering Portfolio | Natthaphon Chiangrang</title>
+    <meta name="description" content="Portfolio - Natthaphon Chiangrang">
+    <title>Natthaphon Chiangrang | Portfolio</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            /* === Dark Emerald Theme (Default) === */
+            --bg: #06110e;
+            --grid: rgba(52, 211, 153, 0.07);
+            --blob-1: rgba(16, 185, 129, 0.3);
+            --blob-2: rgba(5, 150, 105, 0.25);
+            
+            --card-bg: rgba(15, 31, 26, 0.82);
+            --card-border: rgba(52, 211, 153, 0.25);
+            --card-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            --card-glow: rgba(52, 211, 153, 0.12);
+            
+            --text-title: linear-gradient(135deg, #ffffff 40%, #a7f3d0);
+            --text-sub: #6ee7b7;
+            --text-body: #d1fae5;
+            
+            --badge-bg: rgba(52, 211, 153, 0.12);
+            --badge-border: rgba(52, 211, 153, 0.3);
+            --badge-text: #6ee7b7;
+            
+            --avatar-bg: linear-gradient(135deg, #064e3b, #022c22);
+            --avatar-border: rgba(52, 211, 153, 0.4);
+            --avatar-text: #6ee7b7;
+            
+            --tag-bg: rgba(255, 255, 255, 0.05);
+            --tag-border: rgba(52, 211, 153, 0.22);
+            --tag-text: #a7f3d0;
+            --tag-hover: rgba(52, 211, 153, 0.2);
+            --tag-active-bg: linear-gradient(135deg, #10b981, #047857);
+            --tag-active-text: #ffffff;
+            
+            --info-bg: rgba(6, 78, 59, 0.4);
+            --info-border: rgba(52, 211, 153, 0.28);
+            --progress-bar-bg: rgba(52, 211, 153, 0.2);
+            --progress-fill: linear-gradient(90deg, #34d399, #10b981);
+            
+            --btn-main-bg: #34d399;
+            --btn-main-text: #064e3b;
+            --btn-main-hover: #6ee7b7;
+            
+            --btn-sec-bg: rgba(52, 211, 153, 0.1);
+            --btn-sec-border: rgba(52, 211, 153, 0.3);
+            --btn-sec-text: #6ee7b7;
+            
+            --toggle-bg: rgba(15, 31, 26, 0.9);
+            --toggle-border: rgba(52, 211, 153, 0.4);
+            --toast-bg: rgba(10, 26, 21, 0.95);
+        }
+
+        body.light-mode {
+            /* === Muted Soft Sage (Low Glare & Eye Comfortable) === */
+            --bg: #c0dac7;
+            --grid: rgba(6, 78, 59, 0.08);
+            --blob-1: rgba(167, 243, 208, 0.55);
+            --blob-2: rgba(110, 231, 183, 0.45);
+            
+            --card-bg: rgba(232, 245, 236, 0.92);
+            --card-border: rgba(4, 120, 87, 0.22);
+            --card-shadow: 0 18px 40px rgba(6, 78, 59, 0.12);
+            --card-glow: rgba(16, 185, 129, 0.12);
+            
+            --text-title: linear-gradient(135deg, #022c22 30%, #064e3b);
+            --text-sub: #047857;
+            --text-body: #0a2e21;
+            
+            --badge-bg: rgba(16, 185, 129, 0.18);
+            --badge-border: rgba(4, 120, 87, 0.3);
+            --badge-text: #047857;
+            
+            --avatar-bg: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            --avatar-border: rgba(4, 120, 87, 0.35);
+            --avatar-text: #064e3b;
+            
+            --tag-bg: rgba(206, 230, 214, 0.85);
+            --tag-border: rgba(4, 120, 87, 0.25);
+            --tag-text: #047857;
+            --tag-hover: rgba(16, 185, 129, 0.2);
+            --tag-active-bg: linear-gradient(135deg, #047857, #065f46);
+            --tag-active-text: #ffffff;
+            
+            --info-bg: rgba(198, 226, 207, 0.9);
+            --info-border: rgba(4, 120, 87, 0.28);
+            --progress-bar-bg: rgba(4, 120, 87, 0.18);
+            --progress-fill: linear-gradient(90deg, #047857, #059669);
+            
+            --btn-main-bg: #047857;
+            --btn-main-text: #ffffff;
+            --btn-main-hover: #065f46;
+            
+            --btn-sec-bg: rgba(4, 120, 87, 0.1);
+            --btn-sec-border: rgba(4, 120, 87, 0.32);
+            --btn-sec-text: #047857;
+            
+            --toggle-bg: rgba(232, 245, 236, 0.95);
+            --toggle-border: rgba(4, 120, 87, 0.3);
+            --toast-bg: rgba(232, 245, 236, 0.98);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
         }
 
         body {
-            font-family: 'Sarabun', sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Sarabun', sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            background-color: var(--bg);
+            color: var(--text-body);
             overflow-x: hidden;
             position: relative;
-            background: linear-gradient(135deg, #29443d, #355f52, #29443d);
         }
 
-        /* Blueprint Grid Background */
         body::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: 
-                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-            animation: gridMove 20s linear infinite;
+            background-image: radial-gradient(var(--grid) 1.5px, transparent 1.5px);
+            background-size: 28px 28px;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        @keyframes gridMove {
-            from { transform: translate(0, 0); }
-            to { transform: translate(-40px, -40px); }
-        }
-
-        /* Engineering Background Circles */
-        .circle {
+        .blob-container {
             position: absolute;
-            border: 2px solid rgba(255, 255, 255, 0.08);
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .blob {
+            position: absolute;
             border-radius: 50%;
+            filter: blur(80px);
+            animation: float 16s ease-in-out infinite alternate;
             pointer-events: none;
         }
 
-        .circle1 {
-            width: 500px;
-            height: 500px;
-            top: -200px;
-            left: -200px;
-            animation: rotateSlow 40s linear infinite;
+        .blob-1 { width: 450px; height: 450px; background: var(--blob-1); top: -80px; left: -80px; }
+        .blob-2 { width: 500px; height: 500px; background: var(--blob-2); bottom: -100px; right: -80px; animation-delay: -5s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 40px) scale(1.1); }
         }
 
-        .circle2 {
-            width: 350px;
-            height: 350px;
-            bottom: -150px;
-            right: -150px;
-            animation: rotateSlow 30s linear infinite reverse;
-        }
-
-        @keyframes rotateSlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Floating Lights */
-        .light {
-            position: absolute;
-            top: -100px;
-            width: 6px;
-            height: 6px;
+        .mouse-glow {
+            position: fixed;
+            top: 0; left: 0;
+            width: 500px; height: 500px;
+            margin-top: -250px; margin-left: -250px;
+            background: radial-gradient(circle, rgba(52, 211, 153, 0.15), transparent 70%);
             border-radius: 50%;
-            background: white;
-            box-shadow: 0 0 10px white, 0 0 20px #b8ffe0, 0 0 35px #7fffd4;
-            animation: fall linear infinite, twinkle 3s ease-in-out infinite;
             pointer-events: none;
+            z-index: 2;
+            filter: blur(30px);
         }
 
-        .l1 { left: 5%; animation-duration: 12s; }
-        .l2 { left: 15%; animation-duration: 18s; }
-        .l3 { left: 25%; animation-duration: 15s; }
-        .l4 { left: 35%; animation-duration: 20s; }
-        .l5 { left: 45%; animation-duration: 13s; }
-        .l6 { left: 55%; animation-duration: 17s; }
-        .l7 { left: 65%; animation-duration: 14s; }
-        .l8 { left: 75%; animation-duration: 19s; }
-        .l9 { left: 85%; animation-duration: 16s; }
-        .l10 { left: 95%; animation-duration: 21s; }
-
-        @keyframes fall {
-            from { transform: translateY(-100px); }
-            to { transform: translateY(110vh); }
+        .theme-toggle {
+            position: fixed;
+            top: 20px; right: 20px;
+            z-index: 999;
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: var(--toggle-bg);
+            border: 1px solid var(--toggle-border);
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+            font-size: 1.25rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            outline: none;
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 1; }
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
         }
 
-        /* Card Container */
         .card {
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 800px;
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
+            max-width: 620px;
+            background: var(--card-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 45px 36px;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-            animation: fadeUp 1s ease;
-            transition: transform 0.4s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            inset: 12px;
-            border: 2px solid #2f4f4f;
-            border-radius: 12px;
-            pointer-events: none;
+            box-shadow: var(--card-shadow), 0 0 35px var(--card-glow);
+            overflow: hidden;
         }
 
         .card::after {
-            content: "";
+            content: '';
             position: absolute;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(rgba(120, 255, 200, 0.25), transparent 70%);
-            top: -150px;
-            right: -150px;
-            z-index: -1;
-        }
-
-        /* Corner Brackets */
-        .corner {
-            position: absolute;
-            width: 30px;
-            height: 30px;
+            top: -60%; left: -60%;
+            width: 220%; height: 220%;
+            background: linear-gradient(45deg, transparent 45%, rgba(52, 211, 153, 0.1) 50%, transparent 55%);
+            transform: rotate(30deg) translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
             pointer-events: none;
         }
 
-        .tl { top: 10px; left: 10px; border-top: 3px solid #2f4f4f; border-left: 3px solid #2f4f4f; }
-        .tr { top: 10px; right: 10px; border-top: 3px solid #2f4f4f; border-right: 3px solid #2f4f4f; }
-        .bl { bottom: 10px; left: 10px; border-bottom: 3px solid #2f4f4f; border-left: 3px solid #2f4f4f; }
-        .br { bottom: 10px; right: 10px; border-bottom: 3px solid #2f4f4f; border-right: 3px solid #2f4f4f; }
-
-        .icon { font-size: 75px; margin-bottom: 10px; }
-
-        .badge {
-            display: inline-block;
-            margin: 10px 0 15px;
-            padding: 8px 20px;
-            background: #2f4f4f;
-            color: white;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+        .card:hover::after {
+            transform: rotate(30deg) translateY(100%);
         }
 
-        h1 { color: #2f4f4f; }
-
-        .line {
-            width: 100px;
-            height: 4px;
-            background: #2f4f4f;
-            margin: 15px auto 25px;
-            border-radius: 2px;
-        }
-
-        .info {
-            font-size: 18px;
-            line-height: 1.8;
-            color: #333;
-        }
-
-        .highlight {
-            color: #2f4f4f;
-            font-weight: 700;
-        }
-
-        /* Filter Tags / Buttons */
-        .tags {
-            margin-top: 30px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .tag {
+        .avatar-wrapper {
             position: relative;
-            overflow: hidden;
-            border: none;
-            background: #2f4f4f;
-            color: white;
-            padding: 10px 18px;
-            border-radius: 30px;
+            width: 86px; height: 86px;
+            margin: 0 auto 18px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-            font-size: 0.95rem;
+            perspective: 600px;
         }
 
-        .tag:hover {
-            transform: translateY(-2px);
-            background: #476f6f;
-        }
-
-        .tag.active {
-            background: #5d8b8b;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-
-        /* Dynamic Info Box */
-        .info-box {
-            margin-top: 25px;
-            background: #f4f7f6;
-            padding: 20px;
-            border-left: 5px solid #2f4f4f;
-            border-radius: 12px;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.4s ease;
-            min-height: 70px;
+        .avatar {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            background: var(--avatar-bg);
+            border: 2px solid var(--avatar-border);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #444;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--avatar-text);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .avatar-wrapper:hover .avatar {
+            transform: rotateY(360deg) scale(1.05);
+        }
+
+        .status-dot {
+            position: absolute;
+            bottom: 2px; right: 2px;
+            width: 14px; height: 14px;
+            background-color: #34d399;
+            border: 3px solid var(--bg);
+            border-radius: 50%;
+            box-shadow: 0 0 8px #34d399;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 16px;
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            color: var(--badge-text);
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--text-title);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 0.92rem;
+            color: var(--text-sub);
+            margin-bottom: 20px;
+        }
+
+        .bio {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-body);
+            max-width: 480px;
+            margin: 0 auto 30px;
+        }
+
+        /* Tags Selector */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .tag {
+            border: 1px solid var(--tag-border);
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: all 0.25s ease;
+            outline: none;
+        }
+
+        .tag:hover {
+            background: var(--tag-hover);
+            transform: translateY(-2px);
+        }
+
+        .tag.active {
+            background: var(--tag-active-bg);
+            color: var(--tag-active-text);
+            border-color: transparent;
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.22);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: var(--info-bg);
+            border: 1px solid var(--info-border);
+            border-radius: 18px;
+            padding: 20px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
         .info-box.show {
@@ -248,135 +361,263 @@
             transform: translateY(0);
         }
 
-        /* Next Page Navigation Button */
-        .next-btn-container {
-            margin-top: 30px;
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            font-weight: 600;
+            opacity: 0.9;
         }
 
-        .next-btn {
+        .skill-bar {
+            width: 100%; height: 6px;
+            background: var(--progress-bar-bg);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: var(--progress-fill);
+            width: 0%;
+            border-radius: 10px;
+            transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px 32px;
-            background: linear-gradient(135deg, #2f4f4f, #355f52);
-            color: white;
+            gap: 8px;
+            padding: 12px 26px;
+            background: var(--btn-main-bg);
+            color: var(--btn-main-text);
             text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 1.05rem;
-            box-shadow: 0 6px 18px rgba(47, 79, 79, 0.3);
+            border-radius: 25px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            pointer-events: auto;
+            border: none;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.22);
             transition: all 0.3s ease;
         }
 
-        .next-btn:hover {
-            background: linear-gradient(135deg, #355f52, #476f6f);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 22px rgba(47, 79, 79, 0.4);
+        .btn:hover {
+            background: var(--btn-main-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(16, 185, 129, 0.32);
         }
 
-        .next-btn span {
-            transition: transform 0.3s ease;
+        .btn-sec {
+            background: var(--btn-sec-bg);
+            border: 1px solid var(--btn-sec-border);
+            color: var(--btn-sec-text);
+            box-shadow: none;
         }
 
-        .next-btn:hover span {
-            transform: translateX(5px);
+        .btn-sec:hover {
+            background: rgba(16, 185, 129, 0.18);
         }
 
         .footer {
-            margin-top: 25px;
-            color: #666;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            border-top: 1px solid var(--card-border);
+            padding-top: 20px;
+            letter-spacing: 0.8px;
+            font-weight: 600;
         }
 
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .trail {
+            position: fixed;
+            pointer-events: none;
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: #a7f3d0;
+            box-shadow: 0 0 8px #34d399;
+            z-index: 9998;
+            animation: fade 0.6s linear forwards;
         }
 
-        @media (max-width: 768px) {
-            .card { padding: 25px; }
-            .icon { font-size: 55px; }
-            h1 { font-size: 1.6rem; }
+        @keyframes fade {
+            0% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.2); }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 25px; left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: var(--toast-bg);
+            border: 1px solid #34d399;
+            color: var(--text-body);
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-size: 0.88rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease;
+            opacity: 0;
+            z-index: 10000;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 600px) {
+            .card { padding: 35px 20px; }
+            h1 { font-size: 1.65rem; }
+            .btn-group { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="circle circle1"></div>
-    <div class="circle circle2"></div>
+    <div class="mouse-glow" id="mouseGlow"></div>
 
-    <div class="light l1"></div>
-    <div class="light l2"></div>
-    <div class="light l3"></div>
-    <div class="light l4"></div>
-    <div class="light l5"></div>
-    <div class="light l6"></div>
-    <div class="light l7"></div>
-    <div class="light l8"></div>
-    <div class="light l9"></div>
-    <div class="light l10"></div>
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle Theme">
+        <span class="icon">☀️</span>
+    </button>
+
+    <div id="toast" class="toast">✨ คัดลอกอีเมลเรียบร้อยแล้ว!</div>
 
     <main class="card">
-        <div class="corner tl"></div>
-        <div class="corner tr"></div>
-        <div class="corner bl"></div>
-        <div class="corner br"></div>
+        <div class="avatar-wrapper">
+            <div class="avatar">NC</div>
+            <div class="status-dot"></div>
+        </div>
 
-        <div class="icon">⚙️🏗️🧪</div>
         <div class="badge">ENGINEERING STUDENT</div>
-        
-        <h1>ยินดีต้อนรับสู่โปรไฟล์ของฉัน</h1>
-        <div class="line"></div>
 
-        <p class="info">
-            สวัสดีครับ! ผมชื่อ <span class="highlight">ณัชพล เชียงแรง (Natthaphon Chiangrang)</span>
+        <h1>ณัชพล เชียงแรง</h1>
+        <div class="subtitle">Natthaphon Chiangrang</div>
+
+        <p class="bio">
+            นักศึกษาวิศวกรรมศาสตร์ ผู้หลงใหลการแก้ไขปัญหาและการสร้างสรรค์นวัตกรรมใหม่ๆ เพื่อพัฒนาสังคม
         </p>
-        <p class="info">ขณะนี้กำลังศึกษาและสนใจด้าน Engineering</p>
-        <p class="info">นี่คือเว็บไซต์แรกของผมที่โฮสต์บน GitHub Pages</p>
 
+        <!-- Profile Category Selector Tags -->
         <div class="tags">
-            <button class="tag" onclick="showInfo('engineering', event)">⚙️ Engineering</button>
-            <button class="tag" onclick="showInfo('civil', event)">🏗️ Civil</button>
-            <button class="tag" onclick="showInfo('chemical', event)">🧪 Chemical</button>
-            <button class="tag" onclick="showInfo('design', event)">📐 Design</button>
-            <button class="tag" onclick="showInfo('problem', event)">🔧 Problem Solving</button>
+            <button class="tag active" onclick="showInfo('about', this)">👋 แนะนำตัว</button>
+            <button class="tag" onclick="showInfo('strengths', this)">🌟 ความถนัด</button>
+            <button class="tag" onclick="showInfo('interests', this)">🌿 ความชอบ</button>
+            <button class="tag" onclick="showInfo('dreams', this)">🚀 ความฝัน</button>
         </div>
 
+        <!-- Info Box with Animated Level Bar -->
         <div id="infoBox" class="info-box show">
-            เลือกหัวข้อด้านบนเพื่อดูรายละเอียด
+            <div id="infoText">
+                <b>👋 แนะนำตัว:</b> สวัสดีครับ! ผมณัชพล นักศึกษาวิศวกรรมศาสตร์ ผู้มีความสนใจในกระบวนการคิดวิเคราะห์ วางระบบ และพร้อมเปิดรับการเรียนรู้เทคโนโลยีใหม่ๆ เพื่อพัฒนาตนเองอย่างต่อเนื่อง
+            </div>
+            <div>
+                <div class="skill-header">
+                    <span id="skillLabel">LEARNING PASSION</span>
+                    <span id="skillPercent">100%</span>
+                </div>
+                <div class="skill-bar">
+                    <div id="skillFill" class="skill-fill" style="width: 100%;"></div>
+                </div>
+            </div>
         </div>
 
-        <!-- ปุ่มสำหรับไปยัง portfolio.html -->
-        <div class="next-btn-container">
-            <a href="portfolio.html" class="next-btn">
-                เข้าสู่ Portfolio <span>➔</span>
+        <!-- Action Buttons -->
+        <div class="btn-group">
+            <a href="portfolio.html" class="btn" onclick="playSound(600)">
+                เข้าสู่ Portfolio <span>→</span>
             </a>
+            <button class="btn btn-sec" onclick="copyEmail()">
+                📫 คัดลอกอีเมลติดต่อ
+            </button>
         </div>
 
         <footer class="footer">
-            Building Knowledge • Creating Innovation
+            PASSION • CREATIVITY • FUTURE
         </footer>
     </main>
 
     <script>
-        const content = {
-            engineering: "⚙️ Engineering คือการประยุกต์ใช้วิทยาศาสตร์ คณิตศาสตร์ และความคิดสร้างสรรค์เพื่อแก้ปัญหาในโลกจริง",
-            civil: "🏗️ Civil Engineering เกี่ยวข้องกับการออกแบบและก่อสร้างอาคาร ถนน สะพาน เขื่อน และโครงสร้างพื้นฐาน",
-            chemical: "🧪 Chemical Engineering มุ่งเน้นกระบวนการผลิต การแปรรูปวัตถุดิบ และอุตสาหกรรมเคมี",
-            design: "📐 Design คือการออกแบบ วางแผน และพัฒนาระบบหรือโครงสร้างให้มีประสิทธิภาพและปลอดภัย",
-            problem: "🔧 Problem Solving คือหัวใจของงานวิศวกรรมในการวิเคราะห์และแก้ปัญหาอย่างเป็นระบบ"
+        function playSound(freq = 520) {
+            try {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (!AudioCtx) return;
+                const ctx = new AudioCtx();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                gain.gain.setValueAtTime(0.03, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.05);
+
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.05);
+            } catch(e) {}
+        }
+
+        const glow = document.getElementById('mouseGlow');
+        let lastTime = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            glow.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+
+            const now = Date.now();
+            if (now - lastTime > 50) {
+                const t = document.createElement('div');
+                t.className = 'trail';
+                t.style.left = `${e.clientX}px`;
+                t.style.top = `${e.clientY}px`;
+                document.body.appendChild(t);
+                setTimeout(() => t.remove(), 600);
+                lastTime = now;
+            }
+        });
+
+        // Interactive Personal Profile Descriptions & Levels
+        const skillData = {
+            about: { 
+                label: "LEARNING PASSION",
+                text: "<b>👋 แนะนำตัว:</b> สวัสดีครับ! ผมณัชพล นักศึกษาวิศวกรรมศาสตร์ ผู้มีความสนใจในกระบวนการคิดวิเคราะห์ วางระบบ และพร้อมเปิดรับการเรียนรู้เทคโนโลยีใหม่ๆ เพื่อพัฒนาตนเองอย่างต่อเนื่อง", 
+                fill: "100%" 
+            },
+            strengths: { 
+                label: "TECHNICAL PROFICIENCY",
+                text: "<b>🌟 ความถนัด:</b> ชำนาญการคิดเชิงวิเคราะห์ (Analytical Thinking) การใช้งานโปรแกรม CAD ขึ้นแบบ 3D และการแก้ไขปัญหาเฉพาะหน้าอย่างมีขั้นตอนด้วยหลักวิศวกรรม", 
+                fill: "92%" 
+            },
+            interests: { 
+                label: "CREATIVE & INNOVATION DRIVE",
+                text: "<b>🌿 ความชอบ:</b> สนใจงานออกแบบเชิงฟังก์ชัน (Functional Design) เทคโนโลยีการเกษตรและสิ่งแวดล้อม รวมถึงการติดตามนวัตกรรม AI & Automation ใหม่ๆ", 
+                fill: "88%" 
+            },
+            dreams: { 
+                label: "GOAL & COMMITMENT",
+                text: "<b>🚀 ความฝัน:</b> มุ่งเป้าสู่การเป็นวิศวกรผู้สร้างสรรค์นวัตกรรมหรือโครงสร้างพื้นฐานที่ยั่งยืน เพื่อสร้างประโยชน์และยกระดับคุณภาพชีวิตของผู้คนในสังคม", 
+                fill: "98%" 
+            }
         };
 
-        function showInfo(type, event) {
-            const btn = event.currentTarget;
-
+        function showInfo(type, btn) {
+            playSound(700);
             document.querySelectorAll('.tag').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
@@ -384,9 +625,30 @@
             box.classList.remove('show');
 
             setTimeout(() => {
-                box.innerHTML = content[type];
+                document.getElementById('infoText').innerHTML = skillData[type].text;
+                document.getElementById('skillLabel').innerText = skillData[type].label;
+                document.getElementById('skillPercent').innerText = skillData[type].fill;
+                document.getElementById('skillFill').style.width = skillData[type].fill;
                 box.classList.add('show');
-            }, 150);
+            }, 120);
+        }
+
+        function copyEmail() {
+            playSound(850);
+            navigator.clipboard.writeText("natthaphon.chiangrang@email.com").then(() => showToast());
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        function toggleTheme() {
+            playSound(400);
+            document.body.classList.toggle('light-mode');
+            const icon = document.querySelector('#themeToggle .icon');
+            icon.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
         }
     </script>
 </body>

@@ -164,11 +164,22 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
             outline: none;
             backdrop-filter: blur(12px);
+            position: relative;
         }
 
         .control-btn:hover {
             transform: scale(1.12) rotate(8deg);
             border-color: var(--nav-btn-hover);
+        }
+
+        .control-btn.playing {
+            animation: pulseGlow 2s infinite ease-in-out;
+            border-color: #34d399;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 8px var(--glow-color); }
+            50% { box-shadow: 0 0 20px var(--glow-color); }
         }
 
         .card {
@@ -738,8 +749,14 @@
     <canvas id="particleCanvas"></canvas>
     <canvas id="sparkleCanvas"></canvas>
 
+    <!-- Lo-Fi Background Music -->
+    <audio id="bgMusic" loop preload="auto" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio>
+
     <!-- Interactive Top Controls -->
     <div class="controls-wrapper">
+        <button class="control-btn" id="musicToggle" title="เปิด/หยุดเพลง Lo-Fi" onclick="toggleMusic()">
+            <span id="musicIcon">🎵</span>
+        </button>
         <button class="control-btn" id="soundToggle" title="เปิด/ปิด เอฟเฟกต์เสียง" onclick="toggleSound()">
             <span id="soundIcon">🔊</span>
         </button>
@@ -774,7 +791,7 @@
                 แฟ้มสะสมงาน (Portfolio) ฉบับนี้ จัดทำขึ้นเพื่อสะสมผลงาน โครงงาน และกิจกรรมต่างๆ ที่ข้าพเจ้าได้ตั้งใจศึกษาและฝึกฝนด้วยความมุ่งมั่น โดยมีวัตถุประสงค์เพื่อสะท้อนถึงความรู้ ทักษะกระบวนการคิดเชิงวิศวกรรม และความหลงใหลในการพัฒนาตนเองอย่างต่อเนื่อง ข้าพเจ้าหวังเป็นอย่างยิ่งว่าแฟ้มสะสมงานเล่มนี้ จะช่วยแสดงให้เห็นถึงศักยภาพ ความตั้งใจจริง และความพร้อมของข้าพเจ้าสำหรับการเรียนรู้และการสร้างสรรค์ประโยชน์ในอนาคต
             </p>
             <div class="preface-author">
-                นายณัชพล เชียงแรง<br>
+                นายณัฐพล เชียงแรง<br>
                 <span>ผู้จัดทำ</span>
             </div>
         </section>
@@ -784,7 +801,7 @@
             <h2>👤 ข้อมูลส่วนตัว (About Me)</h2>
             <div class="about-content">
                 <div class="about-grid">
-                    <div class="about-item"><strong>ชื่อ-นามสกุล:</strong> นายณัชพล เชียงแรง</div>
+                    <div class="about-item"><strong>ชื่อ-นามสกุล:</strong> นายณัฐพล เชียงแรง</div>
                     <div class="about-item"><strong>ชื่อเล่น:</strong> เจมส์</div>
                     <div class="about-item"><strong>วันเดือนปีเกิด:</strong> 4 มิถุนายน 2552</div>
                     <div class="about-item"><strong>อายุ:</strong> 17 ปี</div>
@@ -908,7 +925,7 @@
                         <h3>การนำเสนอผลงานรูปแบบโปสเตอร์</h3>
                         <div class="portfolio-section-block">
                             <strong>📌 รายละเอียดและเหตุผลที่เลือก:</strong>
-                            <p>เป็นการสรุปและถ่ายทอดเนื้อหาโครงงานเชิงวิชาการให้อยู่ในรูปแบบ Poster Presentation ที่กระชับ ได้ใจความ และดึงดูดสายตา</p>
+                            <p>เป็นการสรุปและถ่ายทอดเนื้อหาโครงงานเชิงวิชาการให้อยูในรูปแบบ Poster Presentation ที่กระชับ ได้ใจความ และดึงดูดสายตา</p>
                         </div>
                         <div class="portfolio-section-block">
                             <strong>💡 ทักษะที่ได้รับและการต่อยอด:</strong>
@@ -1003,7 +1020,7 @@
                 </p>
             </div>
             <div class="thank-you-signature">
-                — นายณัชพล เชียงแรง (เจมส์) —
+                — นายณัฐพล เชียงแรง (เจมส์) —
             </div>
         </section>
 
@@ -1020,6 +1037,64 @@
     </main>
 
     <script>
+        /* === 0. Lo-Fi Music Autoplay Player === */
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggleBtn = document.getElementById('musicToggle');
+        const musicIcon = document.getElementById('musicIcon');
+        let isMusicPlaying = false;
+
+        function updateMusicUI(playing) {
+            isMusicPlaying = playing;
+            if (playing) {
+                musicIcon.textContent = '🎵';
+                musicToggleBtn.classList.add('playing');
+                musicToggleBtn.title = "หยุดเพลง Lo-Fi";
+            } else {
+                musicIcon.textContent = '⏸️';
+                musicToggleBtn.classList.remove('playing');
+                musicToggleBtn.title = "เล่นเพลง Lo-Fi";
+            }
+        }
+
+        function playLoFiMusic() {
+            if (!bgMusic) return;
+            bgMusic.volume = 0.15; // ปรับระดับเสียงลงเหลือ 15% (0.15)
+            bgMusic.play().then(() => {
+                updateMusicUI(true);
+            }).catch(() => {
+                // Browser Autoplay Policy blocked audio, setup fallback trigger on first interaction
+                updateMusicUI(false);
+                const enableOnUserAction = () => {
+                    bgMusic.play().then(() => updateMusicUI(true)).catch(() => {});
+                    window.removeEventListener('click', enableOnUserAction);
+                    window.removeEventListener('touchstart', enableOnUserAction);
+                    window.removeEventListener('scroll', enableOnUserAction);
+                    window.removeEventListener('keydown', enableOnUserAction);
+                };
+                window.addEventListener('click', enableOnUserAction, { once: true });
+                window.addEventListener('touchstart', enableOnUserAction, { once: true });
+                window.addEventListener('scroll', enableOnUserAction, { once: true });
+                window.addEventListener('keydown', enableOnUserAction, { once: true });
+            });
+        }
+
+        function toggleMusic() {
+            playSynthSound('click');
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                updateMusicUI(false);
+            } else {
+                bgMusic.play().then(() => updateMusicUI(true));
+            }
+        }
+
+        // Auto-start music within 1.2 seconds after page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                playLoFiMusic();
+            }, 1200);
+        });
+
         /* === 1. Web Audio Synthesizer (Audio Effects) === */
         let audioMuted = false;
         let audioCtx = null;

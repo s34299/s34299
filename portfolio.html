@@ -16,7 +16,7 @@
             --blob-1: rgba(16, 185, 129, 0.3);
             --blob-2: rgba(5, 150, 105, 0.25);
             
-            --card-bg: rgba(15, 31, 26, 0.82);
+            --card-bg: rgba(15, 31, 26, 0.85);
             --card-border: rgba(52, 211, 153, 0.25);
             --card-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
             --card-glow: rgba(52, 211, 153, 0.12);
@@ -29,8 +29,8 @@
             --badge-border: rgba(52, 211, 153, 0.3);
             --badge-text: #6ee7b7;
             
-            --project-bg: rgba(6, 78, 59, 0.3);
-            --project-hover-bg: rgba(6, 78, 59, 0.55);
+            --project-bg: rgba(6, 78, 59, 0.35);
+            --project-hover-bg: rgba(6, 78, 59, 0.6);
             --project-border: rgba(52, 211, 153, 0.28);
             
             --btn-main-bg: #34d399;
@@ -48,7 +48,7 @@
             --blob-1: rgba(167, 243, 208, 0.55);
             --blob-2: rgba(110, 231, 183, 0.45);
             
-            --card-bg: rgba(232, 245, 236, 0.92);
+            --card-bg: rgba(232, 245, 236, 0.94);
             --card-border: rgba(4, 120, 87, 0.22);
             --card-shadow: 0 18px 40px rgba(6, 78, 59, 0.12);
             --card-glow: rgba(16, 185, 129, 0.12);
@@ -61,8 +61,8 @@
             --badge-border: rgba(4, 120, 87, 0.3);
             --badge-text: #047857;
             
-            --project-bg: rgba(206, 230, 214, 0.7);
-            --project-hover-bg: rgba(180, 218, 192, 0.9);
+            --project-bg: rgba(206, 230, 214, 0.75);
+            --project-hover-bg: rgba(180, 218, 192, 0.95);
             --project-border: rgba(4, 120, 87, 0.28);
             
             --btn-main-bg: #047857;
@@ -86,7 +86,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
             background-color: var(--bg);
             color: var(--text-body);
             overflow-x: hidden;
@@ -119,8 +119,8 @@
             pointer-events: none;
         }
 
-        .blob-1 { width: 450px; height: 450px; background: var(--blob-1); top: -80px; left: -80px; }
-        .blob-2 { width: 500px; height: 500px; background: var(--blob-2); bottom: -100px; right: -80px; animation-delay: -5s; }
+        .blob-1 { width: 550px; height: 550px; background: var(--blob-1); top: -100px; left: -100px; }
+        .blob-2 { width: 600px; height: 600px; background: var(--blob-2); bottom: -120px; right: -100px; animation-delay: -5s; }
 
         @keyframes float {
             0% { transform: translate(0, 0) scale(1); }
@@ -143,7 +143,7 @@
             position: fixed;
             top: 20px; right: 20px;
             z-index: 999;
-            width: 48px; height: 48px;
+            width: 50px; height: 50px;
             border-radius: 50%;
             background: var(--toggle-bg);
             border: 1px solid var(--toggle-border);
@@ -153,7 +153,7 @@
             justify-content: center;
             cursor: pointer;
             pointer-events: auto;
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             outline: none;
         }
@@ -166,13 +166,13 @@
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 750px;
+            max-width: 950px;
             background: var(--card-bg);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--card-border);
             border-radius: 28px;
-            padding: 45px 36px;
+            padding: 55px 50px;
             text-align: center;
             box-shadow: var(--card-shadow), 0 0 35px var(--card-glow);
             overflow: hidden;
@@ -195,85 +195,343 @@
         }
 
         h1 {
-            font-size: 2.1rem;
+            font-size: 2.7rem;
             font-weight: 700;
             background: var(--text-title);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 6px;
+            margin-bottom: 10px;
         }
 
         .subtitle {
-            font-size: 0.95rem;
+            font-size: 1.15rem;
             color: var(--text-sub);
-            margin-bottom: 25px;
+            margin-bottom: 28px;
         }
 
         .line {
-            width: 80px;
+            width: 100px;
             height: 3px;
             background: var(--btn-main-bg);
-            margin: 0 auto 30px;
+            margin: 0 auto 35px;
             border-radius: 2px;
             box-shadow: 0 0 10px rgba(52, 211, 153, 0.5);
         }
 
-        /* Project Cards List */
-        .project-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            text-align: left;
-        }
-
-        .project-card {
+        /* Card Section Styles */
+        .preface-card, .about-card, .interests-card, .strengths-card, .education-card, .goals-card, .achievements-card {
             background: var(--project-bg);
             border: 1px solid var(--project-border);
-            padding: 24px;
-            border-radius: 18px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
+            padding: 32px 38px;
+            border-radius: 20px;
+            text-align: left;
+            margin-bottom: 30px;
             backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .project-card:hover {
-            transform: translateY(-3px);
-            background: var(--project-hover-bg);
+        .preface-card h2, .about-card h2, .interests-card h2, .strengths-card h2, .education-card h2, .goals-card h2, .achievements-card h2 {
+            color: var(--text-sub);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .preface-card p, .goals-card p {
+            line-height: 1.85;
+            font-size: 1.1rem;
+            color: var(--text-body);
+            opacity: 0.95;
+            text-indent: 2.5em;
+        }
+
+        .preface-author {
+            text-align: right;
+            margin-top: 22px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-sub);
+            line-height: 1.6;
+        }
+
+        /* About Me Content Layout */
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+        }
+
+        .about-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px 24px;
+        }
+
+        .about-avatar-wrapper {
+            flex-shrink: 0;
+            width: 155px;
+            height: 155px;
+            border-radius: 50%;
+            border: 3px solid var(--badge-border);
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            background: var(--badge-bg);
+            transition: transform 0.4s ease, border-color 0.3s ease;
+        }
+
+        .about-avatar-wrapper:hover {
+            transform: scale(1.05) rotate(3deg);
             border-color: var(--btn-main-bg);
-            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
         }
 
-        .project-tag {
+        .about-avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .about-item {
+            font-size: 1.08rem;
+            color: var(--text-body);
+            line-height: 1.6;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .about-item strong {
+            color: var(--text-sub);
+            white-space: nowrap;
+        }
+
+        .contact-list {
+            grid-column: span 2;
+            margin-top: 8px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--project-border);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact-list .contact-title {
+            font-weight: 700;
+            color: var(--text-sub);
+            margin-bottom: 4px;
+        }
+
+        .contact-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+        }
+
+        .contact-link {
+            color: var(--text-body);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--btn-main-bg);
+        }
+
+        /* Interests & Strengths Section Styles */
+        .interests-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .interest-item, .strength-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--badge-border);
+            border-radius: 14px;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .interest-item:hover, .strength-item:hover {
+            background: rgba(52, 211, 153, 0.08);
+            transform: translateX(4px);
+        }
+
+        .interest-icon, .strength-icon {
+            font-size: 1.6rem;
+            line-height: 1;
+            padding-top: 2px;
+        }
+
+        .interest-details h3, .strength-details h3 {
+            font-size: 1.15rem;
+            color: var(--text-sub);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .interest-details p, .strength-details p {
+            font-size: 1.02rem;
+            color: var(--text-body);
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .strengths-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        /* Education & Target Section Styles */
+        .target-box {
+            padding: 20px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--badge-border);
+            border-radius: 16px;
+            margin-bottom: 20px;
+        }
+
+        .target-box h3 {
+            font-size: 1.25rem;
+            color: var(--text-sub);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .target-box .major-list {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .target-badge {
             display: inline-block;
             padding: 4px 14px;
             background: var(--badge-bg);
             border: 1px solid var(--badge-border);
             color: var(--badge-text);
-            font-size: 0.78rem;
-            border-radius: 15px;
-            margin-bottom: 12px;
+            border-radius: 20px;
+            font-size: 0.95rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
         }
 
-        .project-card h3 {
-            color: var(--text-sub);
-            font-size: 1.25rem;
+        .reason-title {
+            font-size: 1.15rem;
             font-weight: 700;
-            margin-bottom: 8px;
+            color: var(--text-sub);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .project-card p {
+        .reason-text {
+            line-height: 1.85;
+            font-size: 1.08rem;
+            color: var(--text-body);
+            opacity: 0.95;
+            text-indent: 2em;
+        }
+
+        /* Portfolio 2x2 Grid Layout */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+            margin-top: 10px;
+        }
+
+        .portfolio-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--project-border);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--btn-main-bg);
+            box-shadow: 0 10px 28px rgba(16, 185, 129, 0.18);
+        }
+
+        .portfolio-img-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-card:hover .portfolio-img {
+            transform: scale(1.08);
+        }
+
+        .portfolio-content {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .portfolio-content h4 {
+            font-size: 1.18rem;
+            color: var(--text-sub);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .portfolio-content p {
+            font-size: 1rem;
             color: var(--text-body);
             line-height: 1.65;
-            font-size: 0.92rem;
-            opacity: 0.9;
+            opacity: 0.92;
+            margin-bottom: 14px;
         }
 
-        /* Back Button Navigation */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: auto;
+        }
+
+        .skill-tag {
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            color: var(--badge-text);
+            border-radius: 14px;
+            font-weight: 600;
+        }
+
+        /* Navigation Button */
         .btn-container {
-            margin-top: 35px;
+            margin-top: 40px;
             position: relative;
             z-index: 20;
         }
@@ -282,14 +540,14 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 12px 28px;
+            gap: 10px;
+            padding: 15px 36px;
             background: var(--btn-main-bg);
             color: var(--btn-main-text);
             text-decoration: none;
-            border-radius: 25px;
+            border-radius: 30px;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             box-shadow: 0 8px 20px rgba(16, 185, 129, 0.22);
             transition: all 0.3s ease;
         }
@@ -309,11 +567,11 @@
         }
 
         .footer {
-            margin-top: 30px;
+            margin-top: 38px;
             color: var(--text-sub);
-            font-size: 0.8rem;
+            font-size: 0.95rem;
             border-top: 1px solid var(--card-border);
-            padding-top: 20px;
+            padding-top: 24px;
             letter-spacing: 0.8px;
             font-weight: 600;
         }
@@ -345,10 +603,18 @@
             }
         }
 
-        @media (max-width: 600px) {
-            .card { padding: 35px 20px; }
-            h1 { font-size: 1.65rem; }
-            .project-card { padding: 18px; }
+        @media (max-width: 768px) {
+            .card { padding: 35px 22px; }
+            h1 { font-size: 2rem; }
+            .subtitle { font-size: 1rem; }
+            .preface-card, .about-card, .interests-card, .strengths-card, .education-card, .goals-card, .achievements-card { padding: 22px 20px; }
+            .preface-card p, .goals-card p, .reason-text { font-size: 1rem; }
+            .about-content { flex-direction: column-reverse; gap: 20px; }
+            .about-avatar-wrapper { width: 130px; height: 130px; }
+            .about-grid { grid-template-columns: 1fr; width: 100%; }
+            .contact-list { grid-column: span 1; }
+            .contact-items { flex-direction: column; gap: 8px; }
+            .strengths-grid, .portfolio-grid { grid-template-columns: 1fr; }
             .back-btn { width: 100%; }
         }
     </style>
@@ -371,18 +637,210 @@
         <p class="subtitle">พื้นที่รวบรวมผลงาน โครงงาน และกิจกรรมที่ภาคภูมิใจ</p>
         <div class="line"></div>
 
-        <section class="project-list">
-            <article class="project-card">
-                <span class="project-tag">PROJECT</span>
-                <h3>1. โครงงาน / ชิ้นงานวิทยาศาสตร์คำนวณ</h3>
-                <p><strong>รายละเอียดชิ้นงาน:</strong> เขียนอธิบายสั้น ๆ ว่าทำเกี่ยวกับอะไร ใช้ทักษะด้านไหน และได้เรียนรู้อะไรจากโครงงานนี้บ้าง</p>
-            </article>
+        <section class="preface-card">
+            <h2>📝 คำนำ</h2>
+            <p>
+                แฟ้มสะสมงาน (Portfolio) ฉบับนี้ จัดทำขึ้นเพื่อสะสมผลงาน โครงงาน และกิจกรรมต่างๆ ที่ข้าพเจ้าได้ตั้งใจศึกษาและฝึกฝนด้วยความมุ่งมั่น โดยมีวัตถุประสงค์เพื่อสะท้อนถึงความรู้ ทักษะกระบวนการคิดเชิงวิศวกรรม และความหลงใหลในการพัฒนาตนเองอย่างต่อเนื่อง ข้าพเจ้าหวังเป็นอย่างยิ่งว่าแฟ้มสะสมงานเล่มนี้ จะช่วยแสดงให้เห็นถึงศักยภาพ ความตั้งใจจริง และความพร้อมของข้าพเจ้าสำหรับการเรียนรู้และการสร้างสรรค์ประโยชน์ในอนาคต
+            </p>
+            <div class="preface-author">
+                นายณัฐพล เชียงแรง<br>
+                <span>ผู้จัดทำ</span>
+            </div>
+        </section>
 
-            <article class="project-card">
-                <span class="project-tag">ACTIVITY & CERTIFICATE</span>
-                <h3>2. กิจกรรม / เกียรติบัตรที่ได้รับ</h3>
-                <p><strong>รายละเอียดกิจกรรม:</strong> การเข้าร่วมการแข่งขัน การอบรม หรือกิจกรรมส่งเสริมทักษะวิศวกรรมของโรงเรียน/สถาบันต่าง ๆ</p>
-            </article>
+        <section class="about-card">
+            <h2>👤 ข้อมูลส่วนตัว (About Me)</h2>
+            <div class="about-content">
+                <div class="about-grid">
+                    <div class="about-item">
+                        <strong>ชื่อ-นามสกุล:</strong> นายณัฐพล เชียงแรง
+                    </div>
+                    <div class="about-item">
+                        <strong>ชื่อเล่น:</strong> เจมส์
+                    </div>
+                    <div class="about-item">
+                        <strong>วันเดือนปีเกิด:</strong> 4 มิถุนายน 2552
+                    </div>
+                    <div class="about-item">
+                        <strong>อายุ:</strong> 17 ปี
+                    </div>
+                    <div class="about-item">
+                        <strong>แผนการเรียน:</strong> MSEP
+                    </div>
+
+                    <div class="contact-list">
+                        <span class="contact-title">ช่องทางการติดต่อ:</span>
+                        <div class="contact-items">
+                            <a href="tel:0822303780" class="contact-link">
+                                📱 082-230-3780
+                            </a>
+                            <a href="https://facebook.com" target="_blank" class="contact-link">
+                                🌐 Facebook: Jamie Ncj
+                            </a>
+                            <a href="mailto:nutchapon3780@gmail.com" class="contact-link">
+                                ✉️ nutchapon3780@gmail.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-avatar-wrapper">
+                    <img src="https://i.postimg.cc/Y24Hr301/ja9.jpg" 
+                         alt="นายณัฐพล เชียงแรง" 
+                         class="about-avatar"
+                         referrerpolicy="no-referrer">
+                </div>
+            </div>
+        </section>
+
+        <section class="interests-card">
+            <h2>💡 ความสนใจและความมุ่งมั่น (Interests)</h2>
+            <div class="interests-grid">
+                <div class="interest-item">
+                    <div class="interest-icon">📐</div>
+                    <div class="interest-details">
+                        <h3>1. คณิตศาสตร์ (Mathematics)</h3>
+                        <p>หลงใหลในตรรกะและการคิดวิเคราะห์อย่างเป็นระบบ สนุกกับการแก้โจทย์ปัญหาที่ท้าทายด้วยเหตุและผล</p>
+                    </div>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">🧪</div>
+                    <div class="interest-details">
+                        <h3>2. วิทยาศาสตร์ (Science)</h3>
+                        <p>สนใจกลไกการทำงานของธรรมชาติและเทคโนโลยี ชื่นชอบการตั้งสมมติฐาน การทดลอง และการประยุกต์ใช้กระบวนการคิดเชิงวิศวกรรม</p>
+                    </div>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">🚀</div>
+                    <div class="interest-details">
+                        <h3>3. การเรียนรู้และท้าทายสิ่งใหม่ (Continuous Learning & Challenges)</h3>
+                        <p>มุ่งมั่นพัฒนาตนเองอย่างไม่หยุดยั้ง พร้อมก้าวออกจาก Comfort Zone เพื่อเปิดรับเทคโนโลยีและทักษะใหม่ๆ เสมอ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="strengths-card">
+            <h2>⭐ จุดเด่นของฉัน (Key Strengths)</h2>
+            <div class="strengths-grid">
+                <div class="strength-item">
+                    <div class="strength-icon">🎯</div>
+                    <div class="strength-details">
+                        <h3>1. ความรับผิดชอบต่องาน</h3>
+                        <p>มุ่งมั่นปฏิบัติงานที่ได้รับมอบหมายอย่างเต็มความสามารถ ตรงต่อเวลา และใส่ใจในคุณภาพทุกรายละเอียด</p>
+                    </div>
+                </div>
+                <div class="strength-item">
+                    <div class="strength-icon">🛡️</div>
+                    <div class="strength-details">
+                        <h3>2. ความอดทนสูง</h3>
+                        <p>พร้อมเผชิญแรงกดดันและโจทย์ที่ท้าทาย ไม่ย่อท้อต่ออุปสรรค มุ่งมั่นแก้ปัญหาจนสำเร็จ</p>
+                    </div>
+                </div>
+                <div class="strength-item">
+                    <div class="strength-icon">🤝</div>
+                    <div class="strength-details">
+                        <h3>3. การทำงานเป็นทีม</h3>
+                        <p>พร้อมเป็นทั้งผู้นำและผู้ตามที่ดี เปิดรับความคิดเห็นที่หลากหลาย เพื่อขับเคลื่อนเป้าหมายร่วมกัน</p>
+                    </div>
+                </div>
+                <div class="strength-item">
+                    <div class="strength-icon">😊</div>
+                    <div class="strength-details">
+                        <h3>4. เข้ากับคนได้ง่าย</h3>
+                        <p>มีมนุษยสัมพันธ์ดี ปรับตัวเข้ากับสภาพแวดล้อมใหม่ได้เร็ว และสร้างบรรยากาศเชิงบวกในการทำงานเสมอ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="education-card">
+            <h2>🏛️ เป้าหมายการศึกษาต่อ (Education Target)</h2>
+            <div class="target-box">
+                <h3>จุฬาลงกรณ์มหาวิทยาลัย — คณะวิศวกรรมศาสตร์</h3>
+                <div class="major-list">
+                    <span class="target-badge">สาขาวิศวกรรมเคมี</span>
+                    <span class="target-badge">สาขาวิศวกรรมทั่วไป</span>
+                </div>
+            </div>
+
+            <div class="reason-title">
+                📌 เหตุผลที่สนใจศึกษาต่อ
+            </div>
+            <p class="reason-text">
+                จุฬาลงกรณ์มหาวิทยาลัยเป็นสถาบันชั้นนำด้านวิศวกรรมศาสตร์ที่มีหลักสูตรเข้มข้น เพียบพร้อมด้วยห้องปฏิบัติการและเทคโนโลยีที่ทันสมัย ทั้งยังมุ่งเน้นการวิจัยและพัฒนาเพื่อนำไปประยุกต์ใช้ได้จริงในระดับอุตสาหกรรม การศึกษาในหลักสูตรวิศวกรรมทั่วไปจะช่วยสร้างพื้นฐานการคำนวณและกระบวนการคิดทางวิศวกรรมที่แข็งแกร่ง ก่อนมุ่งสู่สาขาวิศวกรรมเคมี ซึ่งเป็นศาสตร์ที่ต่อยอดความรู้ด้านคณิตศาสตร์ ฟิสิกส์ และเคมีอย่างลงตัว เพื่อออกแบบและพัฒนากระบวนการผลิต ตอบโจทย์ความท้าทายระดับโลก ทั้งด้านพลังงานสะอาด สิ่งแวดล้อม และนวัตกรรมวัสดุแห่งอนาคต
+            </p>
+        </section>
+
+        <section class="goals-card">
+            <h2>🎯 เป้าหมายอนาคตของฉัน (My Future Goals)</h2>
+            <p>
+                มุ่งมั่นศึกษาและพัฒนาทักษะทางวิศวกรรมอย่างรอบด้าน ทั้งการลงมือปฏิบัติจริงในห้องทดลอง การคิดวิเคราะห์ข้อมูลเชิงลึก และการแก้ไขโจทย์ปัญหาที่ซับซ้อนอย่างมีระบบ เพื่อสร้างรากฐานที่มั่นคงสำหรับการศึกษาต่อในระดับอุดมศึกษา ตลอดจนการพัฒนาตนเองสู่การเป็น "วิศวกรมืออาชีพ" ที่มีความเชี่ยวชาญ มีจริยธรรม และพร้อมขับเคลื่อนนวัตกรรมที่เป็นประโยชน์ต่อสังคมในอนาคต
+            </p>
+        </section>
+
+        <section class="achievements-card">
+            <h2>🏆 ผลงานและเกียรติบัตรไฮไลต์ (Featured Achievements & Projects)</h2>
+            
+            <div class="portfolio-grid">
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-img-wrapper">
+                        <img src="https://i.postimg.cc/J4FCHYYr/ja1.png" alt="โครงงานคำนวณและออกแบบทางวิศวกรรม" class="portfolio-img" referrerpolicy="no-referrer">
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>1. โครงงานกระบวนการคิดเชิงวิศวกรรมและการคำนวณ</h4>
+                        <p>ประยุกต์ใช้วิธีการทางวิทยาศาสตร์และตัวแบบคณิตศาสตร์ในการออกแบบโครงงาน ทดลองแก้โจทย์ปัญหาเชิงโครงสร้าง และวิเคราะห์ข้อมูลอย่างมีหลักการ</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Engineering Process</span>
+                            <span class="skill-tag">Data Analysis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-img-wrapper">
+                        <img src="https://i.postimg.cc/RVYxJpp9/ja2.jpg" alt="การทดลองและปฏิบัติการทางเคมี" class="portfolio-img" referrerpolicy="no-referrer">
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>2. ปฏิบัติการทดลองทางเคมีและกระบวนการผลิต</h4>
+                        <p>ฝึกฝนทักษะการทดลองทางเคมีเชิงลึก การควบคุมสภาวะและตระเตรียมสารเคมีอย่างแม่นยำ พร้อมยึดถือมาตรฐานความปลอดภัยในห้องปฏิบัติการ</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Chemical Lab</span>
+                            <span class="skill-tag">Lab Safety</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-img-wrapper">
+                        <img src="https://i.postimg.cc/TYsv5NNv/ja5.jpg" alt="การแข่งขันและทดสอบทักษะวิชาการ STEM" class="portfolio-img" referrerpolicy="no-referrer">
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>3. การแข่งขันและทดสอบทักษะวิชาการ STEM</h4>
+                        <p>เข้าร่วมการแข่งขันและประเมินทักษะด้านคณิตศาสตร์-วิทยาศาสตร์ สะท้อนถึงความเข้มแข็งทางวิชาการ ความคิดเชิงตรรกะ และการแก้โจทย์ท้าทาย</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">STEM Excellence</span>
+                            <span class="skill-tag">Problem Solving</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-img-wrapper">
+                        <img src="https://i.postimg.cc/65Px4bbJ/ja6.jpg" alt="การอบรมเชิงปฏิบัติการทางเทคโนโลยี" class="portfolio-img" referrerpolicy="no-referrer">
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>4. การอบรมเชิงปฏิบัติการเทคโนโลยีและนวัตกรรม</h4>
+                        <p>ผ่านการอบรมเชิงลึกเพื่อเรียนรู้เทคโนโลยีใหม่ๆ มุ่งมั่นพัฒนาตนเองอย่างต่อเนื่อง และพร้อมนำความรู้มาประยุกต์ใช้สร้างสรรค์นวัตกรรม</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Technical Workshop</span>
+                            <span class="skill-tag">Innovation Mindset</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </section>
 
         <div class="btn-container">

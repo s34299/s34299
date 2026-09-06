@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio Projects - Natthaphon Chiangrang">
+    <meta name="description" content="Portfolio - Natthaphon Chiangrang">
     <title>แฟ้มสะสมงาน | Natthaphon Chiangrang</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -39,6 +39,10 @@
             
             --toggle-bg: rgba(15, 31, 26, 0.9);
             --toggle-border: rgba(52, 211, 153, 0.4);
+
+            --item-card-bg: rgba(10, 45, 36, 0.7);
+            --item-card-border: rgba(52, 211, 153, 0.25);
+            --item-card-hover-border: #34d399;
         }
 
         body.light-mode {
@@ -71,6 +75,10 @@
             
             --toggle-bg: rgba(232, 245, 236, 0.95);
             --toggle-border: rgba(4, 120, 87, 0.3);
+
+            --item-card-bg: rgba(255, 255, 255, 0.85);
+            --item-card-border: rgba(4, 120, 87, 0.2);
+            --item-card-hover-border: #047857;
         }
 
         * {
@@ -166,7 +174,7 @@
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 950px;
+            max-width: 980px;
             background: var(--card-bg);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
@@ -218,8 +226,8 @@
             box-shadow: 0 0 10px rgba(52, 211, 153, 0.5);
         }
 
-        /* Card Section Styles */
-        .preface-card, .about-card, .interests-card, .strengths-card, .education-card, .goals-card, .achievements-card {
+        /* Section Styles */
+        .preface-card, .about-card, .interests-card, .strengths-card, .education-card, .goals-card, .achievements-section {
             background: var(--project-bg);
             border: 1px solid var(--project-border);
             padding: 32px 38px;
@@ -230,7 +238,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .preface-card h2, .about-card h2, .interests-card h2, .strengths-card h2, .education-card h2, .goals-card h2, .achievements-card h2 {
+        .preface-card h2, .about-card h2, .interests-card h2, .strengths-card h2, .education-card h2, .goals-card h2, .achievements-section h2 {
             color: var(--text-sub);
             font-size: 1.5rem;
             font-weight: 700;
@@ -257,7 +265,7 @@
             line-height: 1.6;
         }
 
-        /* About Me Content Layout */
+        /* About Me Content */
         .about-content {
             display: flex;
             align-items: center;
@@ -346,7 +354,7 @@
             color: var(--btn-main-bg);
         }
 
-        /* Interests & Strengths Section Styles */
+        /* Interests & Strengths */
         .interests-grid {
             display: flex;
             flex-direction: column;
@@ -395,7 +403,7 @@
             gap: 16px;
         }
 
-        /* Education & Target Section Styles */
+        /* Target Section */
         .target-box {
             padding: 20px 24px;
             background: rgba(255, 255, 255, 0.03);
@@ -447,35 +455,35 @@
             text-indent: 2em;
         }
 
-        /* Portfolio 2x2 Grid Layout */
+        /* Achievements & Showcase Cards */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 22px;
+            gap: 24px;
             margin-top: 10px;
         }
 
         .portfolio-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--project-border);
-            border-radius: 18px;
+            background: var(--item-card-bg);
+            border: 1px solid var(--item-card-border);
+            border-radius: 20px;
             overflow: hidden;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .portfolio-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--btn-main-bg);
-            box-shadow: 0 10px 28px rgba(16, 185, 129, 0.18);
+            transform: translateY(-6px);
+            border-color: var(--item-card-hover-border);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
         }
 
         .portfolio-img-wrapper {
             width: 100%;
-            height: 200px;
+            height: 210px;
             overflow: hidden;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.15);
             position: relative;
         }
 
@@ -483,7 +491,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
 
         .portfolio-card:hover .portfolio-img {
@@ -491,42 +499,68 @@
         }
 
         .portfolio-content {
-            padding: 22px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
 
-        .portfolio-content h4 {
-            font-size: 1.18rem;
-            color: var(--text-sub);
-            margin-bottom: 8px;
+        .portfolio-tag {
+            display: inline-block;
+            padding: 4px 14px;
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            color: var(--badge-text);
+            font-size: 0.85rem;
+            border-radius: 12px;
+            margin-bottom: 12px;
             font-weight: 700;
+            align-self: flex-start;
+            letter-spacing: 0.5px;
         }
 
-        .portfolio-content p {
-            font-size: 1rem;
+        .portfolio-card h3 {
+            color: var(--text-sub);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .portfolio-section-block {
+            margin-bottom: 12px;
+        }
+
+        .portfolio-section-block strong {
+            color: var(--text-sub);
+            font-size: 0.98rem;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .portfolio-section-block p {
             color: var(--text-body);
             line-height: 1.65;
+            font-size: 0.98rem;
             opacity: 0.92;
-            margin-bottom: 14px;
         }
 
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 8px;
             margin-top: auto;
+            padding-top: 12px;
         }
 
         .skill-tag {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             padding: 4px 12px;
             background: var(--badge-bg);
-            border: 1px solid var(--badge-border);
             color: var(--badge-text);
-            border-radius: 14px;
+            border-radius: 10px;
             font-weight: 600;
+            border: 1px solid var(--badge-border);
         }
 
         /* Navigation Button */
@@ -607,14 +641,16 @@
             .card { padding: 35px 22px; }
             h1 { font-size: 2rem; }
             .subtitle { font-size: 1rem; }
-            .preface-card, .about-card, .interests-card, .strengths-card, .education-card, .goals-card, .achievements-card { padding: 22px 20px; }
+            .preface-card, .about-card, .interests-card, .strengths-card, .education-card, .goals-card, .achievements-section { padding: 22px 20px; }
             .preface-card p, .goals-card p, .reason-text { font-size: 1rem; }
             .about-content { flex-direction: column-reverse; gap: 20px; }
             .about-avatar-wrapper { width: 130px; height: 130px; }
             .about-grid { grid-template-columns: 1fr; width: 100%; }
             .contact-list { grid-column: span 1; }
             .contact-items { flex-direction: column; gap: 8px; }
-            .strengths-grid, .portfolio-grid { grid-template-columns: 1fr; }
+            .strengths-grid { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; gap: 20px; }
+            .portfolio-img-wrapper { height: 180px; }
             .back-btn { width: 100%; }
         }
     </style>
@@ -637,23 +673,25 @@
         <p class="subtitle">พื้นที่รวบรวมผลงาน โครงงาน และกิจกรรมที่ภาคภูมิใจ</p>
         <div class="line"></div>
 
+        <!-- Preface Section -->
         <section class="preface-card">
             <h2>📝 คำนำ</h2>
             <p>
                 แฟ้มสะสมงาน (Portfolio) ฉบับนี้ จัดทำขึ้นเพื่อสะสมผลงาน โครงงาน และกิจกรรมต่างๆ ที่ข้าพเจ้าได้ตั้งใจศึกษาและฝึกฝนด้วยความมุ่งมั่น โดยมีวัตถุประสงค์เพื่อสะท้อนถึงความรู้ ทักษะกระบวนการคิดเชิงวิศวกรรม และความหลงใหลในการพัฒนาตนเองอย่างต่อเนื่อง ข้าพเจ้าหวังเป็นอย่างยิ่งว่าแฟ้มสะสมงานเล่มนี้ จะช่วยแสดงให้เห็นถึงศักยภาพ ความตั้งใจจริง และความพร้อมของข้าพเจ้าสำหรับการเรียนรู้และการสร้างสรรค์ประโยชน์ในอนาคต
             </p>
             <div class="preface-author">
-                นายณัฐพล เชียงแรง<br>
+                นายณัชพล เชียงแรง<br>
                 <span>ผู้จัดทำ</span>
             </div>
         </section>
 
+        <!-- About Me Section -->
         <section class="about-card">
             <h2>👤 ข้อมูลส่วนตัว (About Me)</h2>
             <div class="about-content">
                 <div class="about-grid">
                     <div class="about-item">
-                        <strong>ชื่อ-นามสกุล:</strong> นายณัฐพล เชียงแรง
+                        <strong>ชื่อ-นามสกุล:</strong> นายณัชพล เชียงแรง
                     </div>
                     <div class="about-item">
                         <strong>ชื่อเล่น:</strong> เจมส์
@@ -686,13 +724,16 @@
 
                 <div class="about-avatar-wrapper">
                     <img src="https://i.postimg.cc/Y24Hr301/ja9.jpg" 
+                         data-local="ja9.jpg"
                          alt="นายณัฐพล เชียงแรง" 
                          class="about-avatar"
+                         onerror="handleImgError(this)"
                          referrerpolicy="no-referrer">
                 </div>
             </div>
         </section>
 
+        <!-- Interests Section -->
         <section class="interests-card">
             <h2>💡 ความสนใจและความมุ่งมั่น (Interests)</h2>
             <div class="interests-grid">
@@ -720,6 +761,7 @@
             </div>
         </section>
 
+        <!-- Strengths Section -->
         <section class="strengths-card">
             <h2>⭐ จุดเด่นของฉัน (Key Strengths)</h2>
             <div class="strengths-grid">
@@ -754,6 +796,7 @@
             </div>
         </section>
 
+        <!-- Education Target Section -->
         <section class="education-card">
             <h2>🏛️ เป้าหมายการศึกษาต่อ (Education Target)</h2>
             <div class="target-box">
@@ -772,6 +815,7 @@
             </p>
         </section>
 
+        <!-- Goals Section -->
         <section class="goals-card">
             <h2>🎯 เป้าหมายอนาคตของฉัน (My Future Goals)</h2>
             <p>
@@ -779,70 +823,143 @@
             </p>
         </section>
 
-        <section class="achievements-card">
-            <h2>🏆 ผลงานและเกียรติบัตรไฮไลต์ (Featured Achievements & Projects)</h2>
-            
+        <!-- Achievements & Showcase Cards with Auto-Fallback System -->
+        <section class="achievements-section">
+            <h2>🏆 ผลงาน กิจกรรม และเกียรติบัตรไฮไลต์ (Achievements & Showcase)</h2>
             <div class="portfolio-grid">
                 
-                <div class="portfolio-card">
+                <!-- Card 1: Poster Presentation (ja8.jpg) -->
+                <article class="portfolio-card">
                     <div class="portfolio-img-wrapper">
-                        <img src="https://i.postimg.cc/J4FCHYYr/ja1.png" alt="โครงงานคำนวณและออกแบบทางวิศวกรรม" class="portfolio-img" referrerpolicy="no-referrer">
+                        <img src="https://i.postimg.cc/qMFH6DbY/ja8.jpg" 
+                             data-local="ja8.jpg"
+                             alt="การนำเสนอผลงานรูปแบบโปสเตอร์" 
+                             class="portfolio-img" 
+                             onerror="handleImgError(this)"
+                             referrerpolicy="no-referrer">
                     </div>
                     <div class="portfolio-content">
-                        <h4>1. โครงงานกระบวนการคิดเชิงวิศวกรรมและการคำนวณ</h4>
-                        <p>ประยุกต์ใช้วิธีการทางวิทยาศาสตร์และตัวแบบคณิตศาสตร์ในการออกแบบโครงงาน ทดลองแก้โจทย์ปัญหาเชิงโครงสร้าง และวิเคราะห์ข้อมูลอย่างมีหลักการ</p>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Engineering Process</span>
-                            <span class="skill-tag">Data Analysis</span>
+                        <span class="portfolio-tag">PRESENTATION</span>
+                        <h3>การนำเสนอผลงานรูปแบบโปสเตอร์</h3>
+                        
+                        <div class="portfolio-section-block">
+                            <strong>📌 รายละเอียดและเหตุผลที่เลือก:</strong>
+                            <p>เป็นการสรุปและถ่ายทอดเนื้อหาโครงงานเชิงวิชาการให้อยู่ในรูปแบบ Poster Presentation ที่กระชับ ได้ใจความ และดึงดูดสายตา เพื่อสร้างการสื่อสารที่มีประสิทธิภาพ</p>
                         </div>
-                    </div>
-                </div>
+                        
+                        <div class="portfolio-section-block">
+                            <strong>💡 ทักษะที่ได้รับและการต่อยอด:</strong>
+                            <p>พัฒนาทักษะ Visual Communication, Data Synthesis และ Public Speaking สามารถต่อยอดใช้ในการนำเสนอวิจัยและสรุปผลงานวิศวกรรมเชิงวิชาการในระดับอุดมศึกษา</p>
+                        </div>
 
-                <div class="portfolio-card">
-                    <div class="portfolio-img-wrapper">
-                        <img src="https://i.postimg.cc/RVYxJpp9/ja2.jpg" alt="การทดลองและปฏิบัติการทางเคมี" class="portfolio-img" referrerpolicy="no-referrer">
-                    </div>
-                    <div class="portfolio-content">
-                        <h4>2. ปฏิบัติการทดลองทางเคมีและกระบวนการผลิต</h4>
-                        <p>ฝึกฝนทักษะการทดลองทางเคมีเชิงลึก การควบคุมสภาวะและตระเตรียมสารเคมีอย่างแม่นยำ พร้อมยึดถือมาตรฐานความปลอดภัยในห้องปฏิบัติการ</p>
                         <div class="skill-tags">
-                            <span class="skill-tag">Chemical Lab</span>
-                            <span class="skill-tag">Lab Safety</span>
+                            <span class="skill-tag">Poster Presentation</span>
+                            <span class="skill-tag">Visual Communication</span>
+                            <span class="skill-tag">Public Speaking</span>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="portfolio-card">
+                <!-- Card 2: Chula Online Chemistry Course (ja2.jpg) -->
+                <article class="portfolio-card">
                     <div class="portfolio-img-wrapper">
-                        <img src="https://i.postimg.cc/TYsv5NNv/ja5.jpg" alt="การแข่งขันและทดสอบทักษะวิชาการ STEM" class="portfolio-img" referrerpolicy="no-referrer">
+                        <img src="https://i.postimg.cc/RVYxJpp9/ja2.jpg" 
+                             data-local="ja2.jpg"
+                             alt="การเรียนเคมีหลักสูตรออนไลน์ จุฬาฯ" 
+                             class="portfolio-img" 
+                             onerror="handleImgError(this)"
+                             referrerpolicy="no-referrer">
                     </div>
                     <div class="portfolio-content">
-                        <h4>3. การแข่งขันและทดสอบทักษะวิชาการ STEM</h4>
-                        <p>เข้าร่วมการแข่งขันและประเมินทักษะด้านคณิตศาสตร์-วิทยาศาสตร์ สะท้อนถึงความเข้มแข็งทางวิชาการ ความคิดเชิงตรรกะ และการแก้โจทย์ท้าทาย</p>
-                        <div class="skill-tags">
-                            <span class="skill-tag">STEM Excellence</span>
-                            <span class="skill-tag">Problem Solving</span>
+                        <span class="portfolio-tag">ONLINE COURSE</span>
+                        <h3>การเรียนเคมีหลักสูตรออนไลน์ จุฬาฯ</h3>
+                        
+                        <div class="portfolio-section-block">
+                            <strong>📌 รายละเอียดและเหตุผลที่เลือก:</strong>
+                            <p>ศึกษาความรู้เคมีเชิงลึกผ่านระบบออนไลน์ของจุฬาลงกรณ์มหาวิทยาลัย ด้วยความมุ่งมั่นเพื่อเตรียมความพร้อมสู่คณะวิศวกรรมศาสตร์ สาขาวิศวกรรมเคมี</p>
                         </div>
-                    </div>
-                </div>
+                        
+                        <div class="portfolio-section-block">
+                            <strong>💡 ทักษะที่ได้รับและการต่อยอด:</strong>
+                            <p>ได้พื้นฐานเคมีที่แน่นขึ้น (Chemistry Foundations) และทักษะ Self-Directed Learning ต่อรวบกับการวิเคราะห์กระบวนการทางเคมีและ Thermodynamics ในระดับมหาวิทยาลัย</p>
+                        </div>
 
-                <div class="portfolio-card">
-                    <div class="portfolio-img-wrapper">
-                        <img src="https://i.postimg.cc/65Px4bbJ/ja6.jpg" alt="การอบรมเชิงปฏิบัติการทางเทคโนโลยี" class="portfolio-img" referrerpolicy="no-referrer">
-                    </div>
-                    <div class="portfolio-content">
-                        <h4>4. การอบรมเชิงปฏิบัติการเทคโนโลยีและนวัตกรรม</h4>
-                        <p>ผ่านการอบรมเชิงลึกเพื่อเรียนรู้เทคโนโลยีใหม่ๆ มุ่งมั่นพัฒนาตนเองอย่างต่อเนื่อง และพร้อมนำความรู้มาประยุกต์ใช้สร้างสรรค์นวัตกรรม</p>
                         <div class="skill-tags">
-                            <span class="skill-tag">Technical Workshop</span>
-                            <span class="skill-tag">Innovation Mindset</span>
+                            <span class="skill-tag">Chemistry Foundations</span>
+                            <span class="skill-tag">Chula Online</span>
+                            <span class="skill-tag">Self-Learning</span>
                         </div>
                     </div>
-                </div>
+                </article>
+
+                <!-- Card 3: Digital Skills Activity (ja1.png) -->
+                <article class="portfolio-card">
+                    <div class="portfolio-img-wrapper">
+                        <img src="https://i.postimg.cc/J4FCHYYr/ja1.png" 
+                             data-local="ja1.png"
+                             alt="กิจกรรมส่งเสริมทักษะทางดิจิทัล" 
+                             class="portfolio-img" 
+                             onerror="handleImgError(this)"
+                             referrerpolicy="no-referrer">
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">DIGITAL SKILLS</span>
+                        <h3>กิจกรรมส่งเสริมทักษะทางดิจิทัล</h3>
+                        
+                        <div class="portfolio-section-block">
+                            <strong>📌 รายละเอียดและเหตุผลที่เลือก:</strong>
+                            <p>เข้าร่วมกิจกรรมฝึกอบรมเพื่อยกระดับทักษะการใช้เทคโนโลยีดิจิทัลสมัยใหม่ และกระบวนการคิดประมวลผลข้อมูลอย่างเป็นระบบ</p>
+                        </div>
+                        
+                        <div class="portfolio-section-block">
+                            <strong>💡 ทักษะที่ได้รับและการต่อยอด:</strong>
+                            <p>สร้างทักษะ Computational Thinking และ Digital Literacy เพื่อนำไปประยุกต์ต่อยอดการเขียนโปรแกรม การวิเคราะห์ข้อมูล (Data Analytics) และการจำลองระบบวิศวกรรม</p>
+                        </div>
+
+                        <div class="skill-tags">
+                            <span class="skill-tag">Computational Thinking</span>
+                            <span class="skill-tag">Digital Literacy</span>
+                            <span class="skill-tag">Tech Tools</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 4: Anti-Corruption Activity (ja3.jpg) -->
+                <article class="portfolio-card">
+                    <div class="portfolio-img-wrapper">
+                        <img src="https://i.postimg.cc/GhfnTggC/ja3.jpg" 
+                             data-local="ja3.jpg"
+                             alt="กิจกรรมการป้องกันการทุจริต" 
+                             class="portfolio-img" 
+                             onerror="handleImgError(this)"
+                             referrerpolicy="no-referrer">
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">ETHICS & CIVIC</span>
+                        <h3>กิจกรรมการป้องกันการทุจริต</h3>
+                        
+                        <div class="portfolio-section-block">
+                            <strong>📌 รายละเอียดและเหตุผลที่เลือก:</strong>
+                            <p>เข้าร่วมโครงการอบรมและส่งเสริมจริยธรรม การป้องกันการทุจริต เพื่อปลูกฝังความซื่อสัตย์สุจริตและความโปร่งใสในการดำเนินงาน</p>
+                        </div>
+                        
+                        <div class="portfolio-section-block">
+                            <strong>💡 ทักษะที่ได้รับและการต่อยอด:</strong>
+                            <p>ปลูกฝังหลัก Professional Ethics และ Civic Responsibility ยึดถือเป็นหลักปฏิบัติในการทำงานวิศวกรรมที่โปร่งใส ตรวจสอบได้ และรับผิดชอบต่อสังคม</p>
+                        </div>
+
+                        <div class="skill-tags">
+                            <span class="skill-tag">Professional Ethics</span>
+                            <span class="skill-tag">Integrity</span>
+                            <span class="skill-tag">Social Responsibility</span>
+                        </div>
+                    </div>
+                </article>
 
             </div>
         </section>
 
+        <!-- Navigation Button -->
         <div class="btn-container">
             <a href="index.html" class="back-btn" onclick="playSound(520)">
                 <span>⬅</span> กลับหน้าแรก
@@ -855,6 +972,20 @@
     </main>
 
     <script>
+        // Automatic Fallback Handler for Images
+        function handleImgError(img) {
+            if (!img.dataset.failedOnce) {
+                img.dataset.failedOnce = "true";
+                if (img.dataset.local) {
+                    img.src = "./" + img.dataset.local;
+                    return;
+                }
+            }
+            // SVG Fallback Card when image links are fully broken
+            img.onerror = null;
+            img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250"><rect width="100%" height="100%" fill="%230b2b22"/><text x="50%" y="45%" font-family="sans-serif" font-size="28" fill="%2334d399" text-anchor="middle">🖼️</text><text x="50%" y="65%" font-family="sans-serif" font-size="14" fill="%236ee7b7" text-anchor="middle">ภาพผลงาน (Portfolio Image)</text></svg>';
+        }
+
         function playSound(freq = 520) {
             try {
                 const AudioCtx = window.AudioContext || window.webkitAudioContext;

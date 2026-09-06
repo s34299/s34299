@@ -9,6 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         :root {
             /* === Dark Emerald Theme (Default) === */
             --bg: #06110e;
@@ -43,6 +48,12 @@
             --item-card-bg: rgba(10, 45, 36, 0.7);
             --item-card-border: rgba(52, 211, 153, 0.25);
             --item-card-hover-border: #34d399;
+
+            --nav-bg: rgba(6, 25, 20, 0.75);
+            --nav-btn-bg: rgba(52, 211, 153, 0.08);
+            --nav-btn-border: rgba(52, 211, 153, 0.2);
+            --nav-btn-hover: #34d399;
+            --nav-btn-hover-text: #064e3b;
         }
 
         body.light-mode {
@@ -79,6 +90,12 @@
             --item-card-bg: rgba(255, 255, 255, 0.85);
             --item-card-border: rgba(4, 120, 87, 0.2);
             --item-card-hover-border: #047857;
+
+            --nav-bg: rgba(215, 235, 222, 0.85);
+            --nav-btn-bg: rgba(4, 120, 87, 0.08);
+            --nav-btn-border: rgba(4, 120, 87, 0.2);
+            --nav-btn-hover: #047857;
+            --nav-btn-hover-text: #ffffff;
         }
 
         * {
@@ -180,26 +197,63 @@
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--card-border);
             border-radius: 28px;
-            padding: 55px 50px;
+            padding: 40px 50px 55px;
             text-align: center;
             box-shadow: var(--card-shadow), 0 0 35px var(--card-glow);
             overflow: hidden;
             animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .card::after {
-            content: '';
-            position: absolute;
-            top: -60%; left: -60%;
-            width: 220%; height: 220%;
-            background: linear-gradient(45deg, transparent 45%, rgba(52, 211, 153, 0.08) 50%, transparent 55%);
-            transform: rotate(30deg) translateY(-100%);
-            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-            pointer-events: none;
+        /* === Quick Nav Bar Styles === */
+        .quick-nav-container {
+            position: sticky;
+            top: 15px;
+            z-index: 100;
+            margin: -10px -10px 30px -10px;
+            padding: 10px 14px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .card:hover::after {
-            transform: rotate(30deg) translateY(100%);
+        .quick-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 15px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-sub);
+            background: var(--nav-btn-bg);
+            border: 1px solid var(--nav-btn-border);
+            border-radius: 30px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-btn:hover {
+            background: var(--nav-btn-hover);
+            color: var(--nav-btn-hover-text);
+            border-color: var(--nav-btn-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 211, 153, 0.25);
+        }
+
+        .nav-btn active {
+            background: var(--nav-btn-hover);
+            color: var(--nav-btn-hover-text);
         }
 
         h1 {
@@ -227,7 +281,7 @@
         }
 
         /* Section Styles */
-        .preface-card, .about-card, .interests-card, .strengths-card, .education-card, .goals-card, .achievements-section {
+        .preface-card, .about-card, .interests-card, .strengths-card, .education-card, .goals-card, .achievements-section, .thank-you-card {
             background: var(--project-bg);
             border: 1px solid var(--project-border);
             padding: 32px 38px;
@@ -238,7 +292,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .preface-card h2, .about-card h2, .interests-card h2, .strengths-card h2, .education-card h2, .goals-card h2, .achievements-section h2 {
+        .preface-card h2, .about-card h2, .interests-card h2, .strengths-card h2, .education-card h2, .goals-card h2, .achievements-section h2, .thank-you-card h2 {
             color: var(--text-sub);
             font-size: 1.5rem;
             font-weight: 700;
@@ -563,9 +617,42 @@
             border: 1px solid var(--badge-border);
         }
 
+        /* Thank You Section Styles */
+        .thank-you-card {
+            text-align: center;
+            background: linear-gradient(145deg, var(--project-bg), rgba(52, 211, 153, 0.08));
+            border: 1px solid var(--card-border);
+            padding: 45px 35px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .thank-you-card h2 {
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--text-sub);
+        }
+
+        .thank-you-text {
+            line-height: 1.9;
+            font-size: 1.1rem;
+            color: var(--text-body);
+            opacity: 0.95;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .thank-you-signature {
+            margin-top: 25px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--btn-main-bg);
+            letter-spacing: 0.5px;
+        }
+
         /* Navigation Button */
         .btn-container {
-            margin-top: 40px;
+            margin-top: 35px;
             position: relative;
             z-index: 20;
         }
@@ -638,11 +725,15 @@
         }
 
         @media (max-width: 768px) {
-            .card { padding: 35px 22px; }
+            .card { padding: 25px 18px; }
+            .quick-nav-container { margin: 0 0 25px 0; padding: 8px; }
+            .quick-nav { justify-content: flex-start; overflow-x: auto; padding-bottom: 4px; }
+            .quick-nav::-webkit-scrollbar { display: none; }
+            .nav-btn { font-size: 0.82rem; padding: 6px 12px; }
             h1 { font-size: 2rem; }
             .subtitle { font-size: 1rem; }
-            .preface-card, .about-card, .interests-card, .strengths-card, .education-card, .goals-card, .achievements-section { padding: 22px 20px; }
-            .preface-card p, .goals-card p, .reason-text { font-size: 1rem; }
+            .preface-card, .about-card, .interests-card, .strengths-card, .education-card, .goals-card, .achievements-section, .thank-you-card { padding: 22px 20px; }
+            .preface-card p, .goals-card p, .reason-text, .thank-you-text { font-size: 1rem; }
             .about-content { flex-direction: column-reverse; gap: 20px; }
             .about-avatar-wrapper { width: 130px; height: 130px; }
             .about-grid { grid-template-columns: 1fr; width: 100%; }
@@ -669,12 +760,26 @@
     </button>
 
     <main class="card">
+        <!-- Quick Navigation Shortcuts Bar -->
+        <div class="quick-nav-container">
+            <nav class="quick-nav">
+                <a href="#preface" class="nav-btn" onclick="playSound(600)">📝 คำนำ</a>
+                <a href="#about" class="nav-btn" onclick="playSound(620)">👤 ข้อมูลส่วนตัว</a>
+                <a href="#interests" class="nav-btn" onclick="playSound(640)">💡 ความสนใจ</a>
+                <a href="#strengths" class="nav-btn" onclick="playSound(660)">⭐ จุดเด่น</a>
+                <a href="#education" class="nav-btn" onclick="playSound(680)">🏛️ เป้าหมายการศึกษา</a>
+                <a href="#goals" class="nav-btn" onclick="playSound(700)">🎯 เป้าหมายอนาคต</a>
+                <a href="#achievements" class="nav-btn" onclick="playSound(720)">🏆 ผลงานไฮไลต์</a>
+                <a href="#thankyou" class="nav-btn" onclick="playSound(740)">💌 ขอบคุณ</a>
+            </nav>
+        </div>
+
         <h1>📁 แฟ้มสะสมงาน (Portfolio)</h1>
         <p class="subtitle">พื้นที่รวบรวมผลงาน โครงงาน และกิจกรรมที่ภาคภูมิใจ</p>
         <div class="line"></div>
 
         <!-- Preface Section -->
-        <section class="preface-card">
+        <section id="preface" class="preface-card">
             <h2>📝 คำนำ</h2>
             <p>
                 แฟ้มสะสมงาน (Portfolio) ฉบับนี้ จัดทำขึ้นเพื่อสะสมผลงาน โครงงาน และกิจกรรมต่างๆ ที่ข้าพเจ้าได้ตั้งใจศึกษาและฝึกฝนด้วยความมุ่งมั่น โดยมีวัตถุประสงค์เพื่อสะท้อนถึงความรู้ ทักษะกระบวนการคิดเชิงวิศวกรรม และความหลงใหลในการพัฒนาตนเองอย่างต่อเนื่อง ข้าพเจ้าหวังเป็นอย่างยิ่งว่าแฟ้มสะสมงานเล่มนี้ จะช่วยแสดงให้เห็นถึงศักยภาพ ความตั้งใจจริง และความพร้อมของข้าพเจ้าสำหรับการเรียนรู้และการสร้างสรรค์ประโยชน์ในอนาคต
@@ -686,7 +791,7 @@
         </section>
 
         <!-- About Me Section -->
-        <section class="about-card">
+        <section id="about" class="about-card">
             <h2>👤 ข้อมูลส่วนตัว (About Me)</h2>
             <div class="about-content">
                 <div class="about-grid">
@@ -734,7 +839,7 @@
         </section>
 
         <!-- Interests Section -->
-        <section class="interests-card">
+        <section id="interests" class="interests-card">
             <h2>💡 ความสนใจและความมุ่งมั่น (Interests)</h2>
             <div class="interests-grid">
                 <div class="interest-item">
@@ -762,7 +867,7 @@
         </section>
 
         <!-- Strengths Section -->
-        <section class="strengths-card">
+        <section id="strengths" class="strengths-card">
             <h2>⭐ จุดเด่นของฉัน (Key Strengths)</h2>
             <div class="strengths-grid">
                 <div class="strength-item">
@@ -797,7 +902,7 @@
         </section>
 
         <!-- Education Target Section -->
-        <section class="education-card">
+        <section id="education" class="education-card">
             <h2>🏛️ เป้าหมายการศึกษาต่อ (Education Target)</h2>
             <div class="target-box">
                 <h3>จุฬาลงกรณ์มหาวิทยาลัย — คณะวิศวกรรมศาสตร์</h3>
@@ -816,15 +921,15 @@
         </section>
 
         <!-- Goals Section -->
-        <section class="goals-card">
+        <section id="goals" class="goals-card">
             <h2>🎯 เป้าหมายอนาคตของฉัน (My Future Goals)</h2>
             <p>
                 มุ่งมั่นศึกษาและพัฒนาทักษะทางวิศวกรรมอย่างรอบด้าน ทั้งการลงมือปฏิบัติจริงในห้องทดลอง การคิดวิเคราะห์ข้อมูลเชิงลึก และการแก้ไขโจทย์ปัญหาที่ซับซ้อนอย่างมีระบบ เพื่อสร้างรากฐานที่มั่นคงสำหรับการศึกษาต่อในระดับอุดมศึกษา ตลอดจนการพัฒนาตนเองสู่การเป็น "วิศวกรมืออาชีพ" ที่มีความเชี่ยวชาญ มีจริยธรรม และพร้อมขับเคลื่อนนวัตกรรมที่เป็นประโยชน์ต่อสังคมในอนาคต
             </p>
         </section>
 
-        <!-- Achievements & Showcase Cards with Auto-Fallback System -->
-        <section class="achievements-section">
+        <!-- Achievements & Showcase Cards -->
+        <section id="achievements" class="achievements-section">
             <h2>🏆 ผลงาน กิจกรรม และเกียรติบัตรไฮไลต์ (Achievements & Showcase)</h2>
             <div class="portfolio-grid">
                 
@@ -956,6 +1061,23 @@
                     </div>
                 </article>
 
+            </div>
+        </section>
+
+        <!-- Thank You Section -->
+        <section id="thankyou" class="thank-you-card">
+            <h2>💌 ขอขอบพระคุณจากใจจริง (Thank You For Watching)</h2>
+            <div class="thank-you-text">
+                <p>
+                    ขอขอบพระคุณท่านอาจารย์ คณะกรรมการ และผู้เข้าชมทุกท่านเป็นอย่างยิ่ง ที่ได้สละเวลาอันมีค่าในการรับชมและเปิดอ่านแฟ้มสะสมงาน (Portfolio) เล่มนี้ ทุกผลงาน โครงงาน และกิจกรรมที่จัดแสดงในพื้นที่นี้ เกิดจากความตั้งใจ ความมุ่งมั่น และความรักในการเรียนรู้ของข้าพเจ้า เพื่อที่จะก้าวเดินตามความฝันสู่การเป็นวิศวกรที่ดี
+                </p>
+                <br>
+                <p>
+                    เส้นทางสายนี้เป็นเพียงจุดเริ่มต้นเล็กๆ และข้าพเจ้าพร้อมเสมอที่จะเปิดรับคำแนะนำ โอกาสใหม่ๆ รวมถึงการเรียนรู้ที่จะเติบโตขึ้นในทุกๆ วัน หวังเป็นอย่างยิ่งว่าจะได้มีโอกาสนำความรู้และความตั้งใจนี้ไปสร้างสรรค์สิ่งดีๆ ต่อไปครับ
+                </p>
+            </div>
+            <div class="thank-you-signature">
+                — นายณัชพล เชียงแรง (เจมส์) —
             </div>
         </section>
 

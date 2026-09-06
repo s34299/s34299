@@ -10,7 +10,6 @@
 
     <style>
         :root {
-            /* === Dark Emerald Theme (Default) === */
             --bg: #040d0a;
             --grid: rgba(52, 211, 153, 0.05);
             --blob-1: rgba(16, 185, 129, 0.25);
@@ -60,7 +59,6 @@
         }
 
         body.light-mode {
-            /* === Muted Soft Sage === */
             --bg: #b8d5bf;
             --grid: rgba(6, 78, 59, 0.08);
             --blob-1: rgba(167, 243, 208, 0.6);
@@ -176,10 +174,16 @@
             transition: transform 0.05s ease-out;
         }
 
-        .theme-toggle {
+        .controls-wrapper {
             position: fixed;
             top: 20px; right: 20px;
             z-index: 999;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .theme-toggle, .music-toggle {
             width: 52px; height: 52px;
             border-radius: 50%;
             background: var(--toggle-bg);
@@ -190,16 +194,66 @@
             justify-content: center;
             cursor: pointer;
             pointer-events: auto;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             outline: none;
+            position: relative;
         }
 
-        .theme-toggle:hover {
-            transform: scale(1.1) rotate(20deg);
+        .theme-toggle:hover, .music-toggle:hover {
+            transform: scale(1.1);
         }
 
-        /* === Card Wrapper for 3D Tilt & Beam === */
+        .eq-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 16px;
+        }
+
+        .eq-bar {
+            width: 3px;
+            height: 4px;
+            background: var(--text-sub);
+            border-radius: 2px;
+            transition: height 0.2s ease;
+        }
+
+        .music-toggle.playing .eq-bar {
+            animation: eqAnim 0.8s ease-in-out infinite alternate;
+        }
+
+        .music-toggle.playing .eq-bar:nth-child(1) { animation-delay: 0.1s; }
+        .music-toggle.playing .eq-bar:nth-child(2) { animation-delay: 0.3s; }
+        .music-toggle.playing .eq-bar:nth-child(3) { animation-delay: 0.5s; }
+
+        @keyframes eqAnim {
+            0% { height: 4px; }
+            100% { height: 16px; }
+        }
+
+        .control-tooltip {
+            position: absolute;
+            bottom: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--toast-bg);
+            border: 1px solid var(--toggle-border);
+            color: var(--text-sub);
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 10px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .music-toggle:hover .control-tooltip, .theme-toggle:hover .control-tooltip {
+            opacity: 1;
+        }
+
         .card-container {
             position: relative;
             width: 100%;
@@ -211,7 +265,6 @@
             overflow: hidden;
         }
 
-        /* Rotating Neon Border Beam Effect */
         .card-container::before {
             content: "";
             position: absolute;
@@ -243,7 +296,6 @@
             overflow: hidden;
         }
 
-        /* Dynamic Specular Light Glow inside Card */
         .card-light {
             position: absolute;
             inset: 0;
@@ -252,7 +304,6 @@
             z-index: 2;
         }
 
-        /* Avatar with Rotating Aura Ring */
         .avatar-wrapper {
             position: relative;
             width: 180px;
@@ -306,7 +357,6 @@
             transform: rotateY(360deg) scale(1.05);
         }
 
-        /* Shockwave Ripple Effect on Click */
         .ripple-effect {
             position: absolute;
             border-radius: 50%;
@@ -546,9 +596,26 @@
         <div class="blob blob-2"></div>
     </div>
 
-    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" onmouseenter="playFx('hover')" aria-label="Toggle Theme">
-        <span class="icon">☀️</span>
-    </button>
+    <div class="controls-wrapper">
+        <button class="music-toggle" id="musicToggle" onclick="toggleMusic()" onmouseenter="playFx('hover')" aria-label="Toggle Lo-Fi Music">
+            <div class="eq-bars">
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+            </div>
+            <span class="control-tooltip" id="musicStatusText">รอเริ่มเล่นใน 2 วิ...</span>
+        </button>
+
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" onmouseenter="playFx('hover')" aria-label="Toggle Theme">
+            <span class="icon">☀️</span>
+            <span class="control-tooltip">เปลี่ยนธีม</span>
+        </button>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="lofiAudio" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+    </audio>
 
     <div id="toast" class="toast">✨ คัดลอกอีเมลเรียบร้อยแล้ว!</div>
 
@@ -613,7 +680,83 @@
     </div>
 
     <script>
-        /* === Advanced Web Audio Synthesizer Engine === */
+        /* === 2-Second Delayed Autoplay Handler === */
+        const lofiAudio = document.getElementById('lofiAudio');
+        const musicToggle = document.getElementById('musicToggle');
+        const musicStatusText = document.getElementById('musicStatusText');
+        
+        const DEFAULT_VOLUME = 0.075;
+        let isMusicPlaying = false;
+        let fadeInterval = null;
+
+        function startDelayedPlayback() {
+            // ตั้งเวลาหน่วง 2,000 มิลลิวินาที (2 วินาที) หลังเปิดหน้าเว็บ
+            setTimeout(() => {
+                initAudio();
+                lofiAudio.volume = DEFAULT_VOLUME;
+
+                lofiAudio.play().then(() => {
+                    isMusicPlaying = true;
+                    musicToggle.classList.add('playing');
+                    musicStatusText.innerText = "ปิดเพลง Lo-Fi";
+                }).catch(err => {
+                    console.log("Autoplay blocked by browser policy:", err);
+                    musicStatusText.innerText = "คลิกเพื่อเปิดเพลง";
+
+                    // ระบบสำรอง: ปลดล็อกเสียงอัตโนมัติเมื่อผู้ใช้ขยับเมาส์หรือแตะหน้าจอครั้งแรก
+                    const unlockEvents = ['mousemove', 'mousedown', 'touchstart', 'keydown', 'scroll'];
+                    const enableAudioOnInteraction = () => {
+                        lofiAudio.play().then(() => {
+                            isMusicPlaying = true;
+                            musicToggle.classList.add('playing');
+                            musicStatusText.innerText = "ปิดเพลง Lo-Fi";
+                        }).catch(e => console.log(e));
+                        
+                        unlockEvents.forEach(evt => window.removeEventListener(evt, enableAudioOnInteraction));
+                    };
+                    unlockEvents.forEach(evt => window.addEventListener(evt, enableAudioOnInteraction, { once: true }));
+                });
+            }, 2000);
+        }
+
+        window.addEventListener('DOMContentLoaded', startDelayedPlayback);
+
+        function toggleMusic() {
+            initAudio();
+            if (!isMusicPlaying) {
+                lofiAudio.volume = 0;
+                lofiAudio.play().then(() => {
+                    isMusicPlaying = true;
+                    musicToggle.classList.add('playing');
+                    musicStatusText.innerText = "ปิดเพลง Lo-Fi";
+                    fadeAudio(DEFAULT_VOLUME);
+                }).catch(err => console.log(err));
+            } else {
+                fadeAudio(0, () => {
+                    lofiAudio.pause();
+                    isMusicPlaying = false;
+                    musicToggle.classList.remove('playing');
+                    musicStatusText.innerText = "เปิดเพลง Lo-Fi";
+                });
+            }
+        }
+
+        function fadeAudio(targetVolume, onComplete) {
+            clearInterval(fadeInterval);
+            fadeInterval = setInterval(() => {
+                if (Math.abs(lofiAudio.volume - targetVolume) < 0.005) {
+                    lofiAudio.volume = targetVolume;
+                    clearInterval(fadeInterval);
+                    if (onComplete) onComplete();
+                } else if (lofiAudio.volume < targetVolume) {
+                    lofiAudio.volume = Math.min(1, lofiAudio.volume + 0.005);
+                } else {
+                    lofiAudio.volume = Math.max(0, lofiAudio.volume - 0.005);
+                }
+            }, 30);
+        }
+
+        /* === Web Audio Synthesizer SFX Engine === */
         let audioCtx = null;
 
         function initAudio() {
@@ -636,7 +779,7 @@
                     osc.type = 'sine';
                     osc.frequency.setValueAtTime(800, now);
                     osc.frequency.exponentialRampToValueAtTime(1200, now + 0.03);
-                    gain.gain.setValueAtTime(0.015, now);
+                    gain.gain.setValueAtTime(0.01, now);
                     gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.03);
                     osc.connect(gain);
                     gain.connect(audioCtx.destination);
@@ -649,7 +792,7 @@
                     osc.type = 'triangle';
                     osc.frequency.setValueAtTime(520, now);
                     osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
-                    gain.gain.setValueAtTime(0.04, now);
+                    gain.gain.setValueAtTime(0.02, now);
                     gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.08);
                     osc.connect(gain);
                     gain.connect(audioCtx.destination);
@@ -662,7 +805,7 @@
                     osc.type = 'sine';
                     osc.frequency.setValueAtTime(350, now);
                     osc.frequency.exponentialRampToValueAtTime(950, now + 0.12);
-                    gain.gain.setValueAtTime(0.03, now);
+                    gain.gain.setValueAtTime(0.015, now);
                     gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
                     osc.connect(gain);
                     gain.connect(audioCtx.destination);
@@ -670,14 +813,13 @@
                     osc.stop(now + 0.12);
                 } 
                 else if (type === 'success') {
-                    // Success Arpeggio Chime
                     const notes = [523.25, 659.25, 783.99, 1046.50];
                     notes.forEach((freq, idx) => {
                         const osc = audioCtx.createOscillator();
                         const gain = audioCtx.createGain();
                         osc.type = 'sine';
                         osc.frequency.setValueAtTime(freq, now + idx * 0.05);
-                        gain.gain.setValueAtTime(0.03, now + idx * 0.05);
+                        gain.gain.setValueAtTime(0.015, now + idx * 0.05);
                         gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.05 + 0.12);
                         osc.connect(gain);
                         gain.connect(audioCtx.destination);
@@ -688,7 +830,7 @@
             } catch(e) {}
         }
 
-        /* === 3D Interactive Card Tilt & Specular Lighting === */
+        /* === 3D Interactive Card Tilt === */
         const cardContainer = document.getElementById('cardContainer');
         const card = document.getElementById('card');
         const glow = document.getElementById('mouseGlow');
@@ -718,7 +860,7 @@
             card.style.transform = `rotateX(0deg) rotateY(0deg)`;
         });
 
-        /* === Shockwave Ripple Effect on Avatar === */
+        /* === Ripple Effect on Avatar === */
         function triggerRipple(e) {
             playFx('click');
             const wrapper = e.currentTarget;
@@ -730,7 +872,7 @@
             setTimeout(() => ripple.remove(), 600);
         }
 
-        /* === Interactive Particle Canvas Background === */
+        /* === Particle Canvas Background === */
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];

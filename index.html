@@ -11,75 +11,76 @@
     <style>
         :root {
             /* === Dark Emerald Theme (Default) === */
-            --bg: #06110e;
-            --grid: rgba(52, 211, 153, 0.07);
-            --blob-1: rgba(16, 185, 129, 0.3);
-            --blob-2: rgba(5, 150, 105, 0.25);
+            --bg: #040d0a;
+            --grid: rgba(52, 211, 153, 0.05);
+            --blob-1: rgba(16, 185, 129, 0.25);
+            --blob-2: rgba(5, 150, 105, 0.2);
             
-            --card-bg: rgba(15, 31, 26, 0.82);
-            --card-border: rgba(52, 211, 153, 0.25);
-            --card-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-            --card-glow: rgba(52, 211, 153, 0.12);
+            --card-bg: rgba(10, 25, 20, 0.75);
+            --card-border: rgba(52, 211, 153, 0.3);
+            --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+            --card-glow: rgba(52, 211, 153, 0.15);
             
-            --text-title: linear-gradient(135deg, #ffffff 40%, #a7f3d0);
+            --text-title: linear-gradient(135deg, #ffffff 30%, #a7f3d0 100%);
             --text-sub: #6ee7b7;
             --text-body: #d1fae5;
             
             --badge-bg: rgba(52, 211, 153, 0.12);
-            --badge-border: rgba(52, 211, 153, 0.3);
+            --badge-border: rgba(52, 211, 153, 0.35);
             --badge-text: #6ee7b7;
             
             --avatar-bg: linear-gradient(135deg, #064e3b, #022c22);
-            --avatar-border: rgba(52, 211, 153, 0.4);
+            --avatar-border: rgba(52, 211, 153, 0.5);
             --avatar-text: #6ee7b7;
             
-            --tag-bg: rgba(255, 255, 255, 0.05);
+            --tag-bg: rgba(255, 255, 255, 0.04);
             --tag-border: rgba(52, 211, 153, 0.22);
             --tag-text: #a7f3d0;
             --tag-hover: rgba(52, 211, 153, 0.2);
             --tag-active-bg: linear-gradient(135deg, #10b981, #047857);
             --tag-active-text: #ffffff;
             
-            --info-bg: rgba(6, 78, 59, 0.4);
+            --info-bg: rgba(6, 78, 59, 0.35);
             --info-border: rgba(52, 211, 153, 0.28);
             --progress-bar-bg: rgba(52, 211, 153, 0.2);
             --progress-fill: linear-gradient(90deg, #34d399, #10b981);
             
             --btn-main-bg: #34d399;
-            --btn-main-text: #064e3b;
+            --btn-main-text: #042f22;
             --btn-main-hover: #6ee7b7;
             
             --btn-sec-bg: rgba(52, 211, 153, 0.1);
-            --btn-sec-border: rgba(52, 211, 153, 0.3);
+            --btn-sec-border: rgba(52, 211, 153, 0.35);
             --btn-sec-text: #6ee7b7;
             
             --toggle-bg: rgba(15, 31, 26, 0.9);
             --toggle-border: rgba(52, 211, 153, 0.4);
             --toast-bg: rgba(10, 26, 21, 0.95);
+            --beam-color: rgba(52, 211, 153, 0.8);
         }
 
         body.light-mode {
             /* === Muted Soft Sage === */
-            --bg: #c0dac7;
+            --bg: #b8d5bf;
             --grid: rgba(6, 78, 59, 0.08);
-            --blob-1: rgba(167, 243, 208, 0.55);
-            --blob-2: rgba(110, 231, 183, 0.45);
+            --blob-1: rgba(167, 243, 208, 0.6);
+            --blob-2: rgba(110, 231, 183, 0.5);
             
-            --card-bg: rgba(232, 245, 236, 0.92);
-            --card-border: rgba(4, 120, 87, 0.22);
-            --card-shadow: 0 18px 40px rgba(6, 78, 59, 0.12);
-            --card-glow: rgba(16, 185, 129, 0.12);
+            --card-bg: rgba(235, 247, 239, 0.88);
+            --card-border: rgba(4, 120, 87, 0.28);
+            --card-shadow: 0 20px 45px rgba(6, 78, 59, 0.15);
+            --card-glow: rgba(16, 185, 129, 0.15);
             
-            --text-title: linear-gradient(135deg, #022c22 30%, #064e3b);
+            --text-title: linear-gradient(135deg, #022c22 30%, #064e3b 100%);
             --text-sub: #047857;
             --text-body: #0a2e21;
             
             --badge-bg: rgba(16, 185, 129, 0.18);
-            --badge-border: rgba(4, 120, 87, 0.3);
+            --badge-border: rgba(4, 120, 87, 0.35);
             --badge-text: #047857;
             
             --avatar-bg: linear-gradient(135deg, #d1fae5, #a7f3d0);
-            --avatar-border: rgba(4, 120, 87, 0.35);
+            --avatar-border: rgba(4, 120, 87, 0.4);
             --avatar-text: #064e3b;
             
             --tag-bg: rgba(206, 230, 214, 0.85);
@@ -105,6 +106,7 @@
             --toggle-bg: rgba(232, 245, 236, 0.95);
             --toggle-border: rgba(4, 120, 87, 0.3);
             --toast-bg: rgba(232, 245, 236, 0.98);
+            --beam-color: rgba(4, 120, 87, 0.8);
         }
 
         * {
@@ -125,14 +127,14 @@
             color: var(--text-body);
             overflow-x: hidden;
             position: relative;
+            perspective: 1000px;
         }
 
-        body::before {
-            content: "";
-            position: absolute;
+        #particleCanvas {
+            position: fixed;
             inset: 0;
-            background-image: radial-gradient(var(--grid) 1.5px, transparent 1.5px);
-            background-size: 28px 28px;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 1;
         }
@@ -148,7 +150,7 @@
         .blob {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
+            filter: blur(90px);
             animation: float 16s ease-in-out infinite alternate;
             pointer-events: none;
         }
@@ -166,11 +168,12 @@
             top: 0; left: 0;
             width: 500px; height: 500px;
             margin-top: -250px; margin-left: -250px;
-            background: radial-gradient(circle, rgba(52, 211, 153, 0.15), transparent 70%);
+            background: radial-gradient(circle, rgba(52, 211, 153, 0.18), transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 2;
             filter: blur(30px);
+            transition: transform 0.05s ease-out;
         }
 
         .theme-toggle {
@@ -188,40 +191,94 @@
             cursor: pointer;
             pointer-events: auto;
             font-size: 1.4rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             outline: none;
         }
 
         .theme-toggle:hover {
-            transform: scale(1.1) rotate(15deg);
+            transform: scale(1.1) rotate(20deg);
+        }
+
+        /* === Card Wrapper for 3D Tilt & Beam === */
+        .card-container {
+            position: relative;
+            width: 100%;
+            max-width: 720px;
+            z-index: 10;
+            border-radius: 28px;
+            padding: 2px;
+            background: transparent;
+            overflow: hidden;
+        }
+
+        /* Rotating Neon Border Beam Effect */
+        .card-container::before {
+            content: "";
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, var(--beam-color));
+            animation: rotateBeam 6s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotateBeam {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .card {
             position: relative;
-            z-index: 10;
+            z-index: 1;
             width: 100%;
-            max-width: 720px; /* เพิ่มความกว้างสูงสุดของการ์ด */
             background: var(--card-bg);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--card-border);
-            border-radius: 28px;
-            padding: 50px 42px; /* เพิ่มพื้นที่ขอบใน */
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border-radius: 26px;
+            padding: 50px 42px;
             text-align: center;
             box-shadow: var(--card-shadow), 0 0 35px var(--card-glow);
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease-out;
             overflow: hidden;
         }
 
+        /* Dynamic Specular Light Glow inside Card */
+        .card-light {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.08), transparent 40%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Avatar with Rotating Aura Ring */
         .avatar-wrapper {
             position: relative;
-            width: 180px; /* ปรับขนาดรูปโปรไฟล์ให้สมส่วนกับการ์ด */
+            width: 180px;
             height: 180px;
             margin: 0 auto 20px;
             cursor: pointer;
             perspective: 600px;
         }
 
+        .avatar-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent 0%, var(--badge-text) 50%, transparent 100%);
+            animation: spinRing 4s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes spinRing {
+            100% { transform: rotate(360deg); }
+        }
+
         .avatar {
+            position: relative;
+            z-index: 2;
             width: 100%; height: 100%;
             border-radius: 50%;
             background: var(--avatar-bg);
@@ -249,6 +306,21 @@
             transform: rotateY(360deg) scale(1.05);
         }
 
+        /* Shockwave Ripple Effect on Click */
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid var(--badge-text);
+            animation: rippleAnim 0.6s cubic-bezier(0, 0.2, 0.8, 1) forwards;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        @keyframes rippleAnim {
+            0% { width: 0; height: 0; opacity: 1; }
+            100% { width: 300px; height: 300px; opacity: 0; margin-left: -150px; margin-top: -150px; }
+        }
+
         .status-dot {
             position: absolute;
             bottom: 8px; right: 8px;
@@ -256,7 +328,14 @@
             background-color: #34d399;
             border: 3px solid var(--bg);
             border-radius: 50%;
-            box-shadow: 0 0 8px #34d399;
+            box-shadow: 0 0 10px #34d399;
+            z-index: 3;
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 10px #34d399; }
+            50% { transform: scale(1.2); box-shadow: 0 0 18px #34d399; }
         }
 
         .badge {
@@ -266,14 +345,15 @@
             border: 1px solid var(--badge-border);
             color: var(--badge-text);
             border-radius: 20px;
-            font-size: 0.88rem; /* เพิ่มขนาดฟอนต์ */
+            font-size: 0.88rem;
             font-weight: 600;
             letter-spacing: 0.8px;
             margin-bottom: 20px;
+            box-shadow: 0 0 15px var(--badge-bg);
         }
 
         h1 {
-            font-size: 2.3rem; /* เพิ่มขนาดหัวข้อชื่อ */
+            font-size: 2.3rem;
             font-weight: 700;
             background: var(--text-title);
             -webkit-background-clip: text;
@@ -282,16 +362,16 @@
         }
 
         .subtitle {
-            font-size: 1.05rem; /* เพิ่มขนาดฟอนต์ */
+            font-size: 1.05rem;
             color: var(--text-sub);
             margin-bottom: 22px;
         }
 
         .bio {
-            font-size: 1.05rem; /* เพิ่มขนาดฟอนต์ */
+            font-size: 1.05rem;
             line-height: 1.75;
             color: var(--text-body);
-            max-width: 540px; /* เพิ่มความกว้างกล่องข้อความ */
+            max-width: 540px;
             margin: 0 auto 32px;
         }
 
@@ -309,9 +389,9 @@
             border: 1px solid var(--tag-border);
             background: var(--tag-bg);
             color: var(--tag-text);
-            padding: 10px 20px; /* เพิ่ม Padding ของแท็ก */
+            padding: 10px 20px;
             border-radius: 25px;
-            font-size: 0.95rem; /* เพิ่มขนาดฟอนต์แท็ก */
+            font-size: 0.95rem;
             font-family: inherit;
             font-weight: 600;
             cursor: pointer;
@@ -322,22 +402,23 @@
 
         .tag:hover {
             background: var(--tag-hover);
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 5px 15px rgba(52, 211, 153, 0.15);
         }
 
         .tag.active {
             background: var(--tag-active-bg);
             color: var(--tag-active-text);
             border-color: transparent;
-            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.22);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
         }
 
         .info-box {
             background: var(--info-bg);
             border: 1px solid var(--info-border);
             border-radius: 18px;
-            padding: 24px; /* เพิ่มพื้นที่ภายในกล่องข้อมูล */
-            font-size: 1rem; /* เพิ่มขนาดฟอนต์กล่องข้อมูล */
+            padding: 24px;
+            font-size: 1rem;
             line-height: 1.65;
             margin-bottom: 30px;
             display: flex;
@@ -357,13 +438,13 @@
         .skill-header {
             display: flex;
             justify-content: space-between;
-            font-size: 0.85rem; /* เพิ่มขนาดฟอนต์ Skill Header */
+            font-size: 0.85rem;
             font-weight: 600;
             opacity: 0.9;
         }
 
         .skill-bar {
-            width: 100%; height: 8px; /* เพิ่มความหนาของ Skill bar */
+            width: 100%; height: 8px;
             background: var(--progress-bar-bg);
             border-radius: 10px;
             overflow: hidden;
@@ -374,7 +455,7 @@
             background: var(--progress-fill);
             width: 0%;
             border-radius: 10px;
-            transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .btn-group {
@@ -391,12 +472,12 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 14px 28px; /* เพิ่มขนาดปุ่ม */
+            padding: 14px 28px;
             background: var(--btn-main-bg);
             color: var(--btn-main-text);
             text-decoration: none;
             border-radius: 25px;
-            font-size: 1rem; /* เพิ่มขนาดฟอนต์ปุ่ม */
+            font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
             pointer-events: auto;
@@ -407,8 +488,8 @@
 
         .btn:hover {
             background: var(--btn-main-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(16, 185, 129, 0.32);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(16, 185, 129, 0.4);
         }
 
         .btn-sec {
@@ -419,11 +500,11 @@
         }
 
         .btn-sec:hover {
-            background: rgba(16, 185, 129, 0.18);
+            background: rgba(16, 185, 129, 0.22);
         }
 
         .footer {
-            font-size: 0.88rem; /* เพิ่มขนาดฟอนต์ Footer */
+            font-size: 0.88rem;
             color: var(--text-sub);
             border-top: 1px solid var(--card-border);
             padding-top: 22px;
@@ -440,8 +521,8 @@
             color: var(--text-body);
             padding: 12px 28px;
             border-radius: 25px;
-            font-size: 0.95rem; /* เพิ่มขนาดฟอนต์ Toast */
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            font-size: 0.95rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
             transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease;
             opacity: 0;
             z-index: 10000;
@@ -456,6 +537,8 @@
 </head>
 <body>
 
+    <canvas id="particleCanvas"></canvas>
+
     <div class="mouse-glow" id="mouseGlow"></div>
 
     <div class="blob-container">
@@ -463,94 +546,254 @@
         <div class="blob blob-2"></div>
     </div>
 
-    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle Theme">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" onmouseenter="playFx('hover')" aria-label="Toggle Theme">
         <span class="icon">☀️</span>
     </button>
 
     <div id="toast" class="toast">✨ คัดลอกอีเมลเรียบร้อยแล้ว!</div>
 
-    <main class="card">
-        <div class="avatar-wrapper">
-            <div class="avatar">
-                <img src="https://i.postimg.cc/Y24Hr301/ja9.jpg" 
-                     alt="ณัชพล เชียงแรง" 
-                     referrerpolicy="no-referrer" 
-                     onerror="this.style.display='none'; this.parentElement.innerText='NC';">
-            </div>
-            <div class="status-dot"></div>
-        </div>
+    <div class="card-container" id="cardContainer">
+        <main class="card" id="card">
+            <div class="card-light"></div>
 
-        <div class="badge">ENGINEERING STUDENT</div>
-
-        <h1>ณัชพล เชียงแรง</h1>
-        <div class="subtitle">Natthaphon Chiangrang</div>
-
-        <p class="bio">
-            นักศึกษาวิศวกรรมศาสตร์ ผู้หลงใหลการแก้ไขปัญหาและการสร้างสรรค์นวัตกรรมใหม่ๆ เพื่อพัฒนาสังคม
-        </p>
-
-        <div class="tags">
-            <button class="tag active" onclick="showInfo('about', this)">👋 แนะนำตัว</button>
-            <button class="tag" onclick="showInfo('strengths', this)">🌟 ความถนัด</button>
-            <button class="tag" onclick="showInfo('interests', this)">🌿 ความชอบ</button>
-            <button class="tag" onclick="showInfo('dreams', this)">🚀 ความฝัน</button>
-        </div>
-
-        <div id="infoBox" class="info-box show">
-            <div id="infoText">
-                <b>👋 แนะนำตัว:</b> สวัสดีครับ! ผมณัชพล นักศึกษาวิศวกรรมศาสตร์ ผู้มีความสนใจในกระบวนการคิดวิเคราะห์ วางระบบ และพร้อมเปิดรับการเรียนรู้เทคโนโลยีใหม่ๆ เพื่อพัฒนาตนเองอย่างต่อเนื่อง
-            </div>
-            <div>
-                <div class="skill-header">
-                    <span id="skillLabel">LEARNING PASSION</span>
-                    <span id="skillPercent">100%</span>
+            <div class="avatar-wrapper" onclick="triggerRipple(event)" onmouseenter="playFx('hover')">
+                <div class="avatar">
+                    <img src="https://i.postimg.cc/Y24Hr301/ja9.jpg" 
+                         alt="ณัชพล เชียงแรง" 
+                         referrerpolicy="no-referrer" 
+                         onerror="this.style.display='none'; this.parentElement.innerText='NC';">
                 </div>
-                <div class="skill-bar">
-                    <div id="skillFill" class="skill-fill" style="width: 100%;"></div>
+                <div class="status-dot"></div>
+            </div>
+
+            <div class="badge">ENGINEERING STUDENT</div>
+
+            <h1>ณัชพล เชียงแรง</h1>
+            <div class="subtitle">Natthaphon Chiangrang</div>
+
+            <p class="bio">
+                นักศึกษาวิศวกรรมศาสตร์ ผู้หลงใหลการแก้ไขปัญหาและการสร้างสรรค์นวัตกรรมใหม่ๆ เพื่อพัฒนาสังคม
+            </p>
+
+            <div class="tags">
+                <button class="tag active" onmouseenter="playFx('hover')" onclick="showInfo('about', this)">👋 แนะนำตัว</button>
+                <button class="tag" onmouseenter="playFx('hover')" onclick="showInfo('strengths', this)">🌟 ความถนัด</button>
+                <button class="tag" onmouseenter="playFx('hover')" onclick="showInfo('interests', this)">🌿 ความชอบ</button>
+                <button class="tag" onmouseenter="playFx('hover')" onclick="showInfo('dreams', this)">🚀 ความฝัน</button>
+            </div>
+
+            <div id="infoBox" class="info-box show">
+                <div id="infoText">
+                    <b>👋 แนะนำตัว:</b> สวัสดีครับ! ผมณัชพล นักศึกษาวิศวกรรมศาสตร์ ผู้มีความสนใจในกระบวนการคิดวิเคราะห์ วางระบบ และพร้อมเปิดรับการเรียนรู้เทคโนโลยีใหม่ๆ เพื่อพัฒนาตนเองอย่างต่อเนื่อง
+                </div>
+                <div>
+                    <div class="skill-header">
+                        <span id="skillLabel">LEARNING PASSION</span>
+                        <span id="skillPercent">100%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div id="skillFill" class="skill-fill" style="width: 100%;"></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="btn-group">
-            <a href="portfolio.html" class="btn" onclick="playSound(600)">
-                เข้าสู่ Portfolio <span>→</span>
-            </a>
-            <button class="btn btn-sec" onclick="copyEmail()">
-                📫 คัดลอกอีเมลติดต่อ
-            </button>
-        </div>
+            <div class="btn-group">
+                <a href="portfolio.html" class="btn" onmouseenter="playFx('hover')" onclick="playFx('click')">
+                    เข้าสู่ Portfolio <span>→</span>
+                </a>
+                <button class="btn btn-sec" onmouseenter="playFx('hover')" onclick="copyEmail()">
+                    📫 คัดลอกอีเมลติดต่อ
+                </button>
+            </div>
 
-        <footer class="footer">
-            PASSION • CREATIVITY • FUTURE
-        </footer>
-    </main>
+            <footer class="footer">
+                PASSION • CREATIVITY • FUTURE
+            </footer>
+        </main>
+    </div>
 
     <script>
-        function playSound(freq = 520) {
+        /* === Advanced Web Audio Synthesizer Engine === */
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playFx(type) {
             try {
-                const AudioCtx = window.AudioContext || window.webkitAudioContext;
-                if (!AudioCtx) return;
-                const ctx = new AudioCtx();
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
+                initAudio();
+                const now = audioCtx.currentTime;
 
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(freq, ctx.currentTime);
-                gain.gain.setValueAtTime(0.03, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.05);
-
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.start();
-                osc.stop(ctx.currentTime + 0.05);
+                if (type === 'hover') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(800, now);
+                    osc.frequency.exponentialRampToValueAtTime(1200, now + 0.03);
+                    gain.gain.setValueAtTime(0.015, now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.03);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.03);
+                } 
+                else if (type === 'click') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(520, now);
+                    osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
+                    gain.gain.setValueAtTime(0.04, now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.08);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                } 
+                else if (type === 'toggle') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(350, now);
+                    osc.frequency.exponentialRampToValueAtTime(950, now + 0.12);
+                    gain.gain.setValueAtTime(0.03, now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.12);
+                } 
+                else if (type === 'success') {
+                    // Success Arpeggio Chime
+                    const notes = [523.25, 659.25, 783.99, 1046.50];
+                    notes.forEach((freq, idx) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.05);
+                        gain.gain.setValueAtTime(0.03, now + idx * 0.05);
+                        gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.05 + 0.12);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start(now + idx * 0.05);
+                        osc.stop(now + idx * 0.05 + 0.12);
+                    });
+                }
             } catch(e) {}
         }
 
+        /* === 3D Interactive Card Tilt & Specular Lighting === */
+        const cardContainer = document.getElementById('cardContainer');
+        const card = document.getElementById('card');
         const glow = document.getElementById('mouseGlow');
+
         window.addEventListener('mousemove', (e) => {
             glow.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+
+            const rect = cardContainer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -7;
+                const rotateY = ((x - centerX) / centerX) * 7;
+
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            } else {
+                card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            }
         });
 
+        cardContainer.addEventListener('mouseleave', () => {
+            card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        });
+
+        /* === Shockwave Ripple Effect on Avatar === */
+        function triggerRipple(e) {
+            playFx('click');
+            const wrapper = e.currentTarget;
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple-effect';
+            ripple.style.left = `${e.clientX - wrapper.getBoundingClientRect().left}px`;
+            ripple.style.top = `${e.clientY - wrapper.getBoundingClientRect().top}px`;
+            wrapper.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        /* === Interactive Particle Canvas Background === */
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = (Math.random() - 0.5) * 0.6;
+                this.radius = Math.random() * 1.8 + 1;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(52, 211, 153, 0.4)';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 45; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 110) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(52, 211, 153, ${0.15 - dist / 110 * 0.15})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        /* === Content Data & Logic === */
         const skillData = {
             about: { 
                 label: "LEARNING PASSION",
@@ -575,6 +818,7 @@
         };
 
         function showInfo(key, btn) {
+            playFx('click');
             document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
             btn.classList.add('active');
             
@@ -588,21 +832,20 @@
                 document.getElementById('skillFill').style.width = skillData[key].fill;
                 infoBox.classList.add('show');
             }, 200);
-            playSound(580);
         }
 
         function toggleTheme() {
+            playFx('toggle');
             document.body.classList.toggle('light-mode');
             const isLight = document.body.classList.contains('light-mode');
             document.getElementById('themeToggle').querySelector('.icon').innerText = isLight ? '🌙' : '☀️';
-            playSound(isLight ? 440 : 660);
         }
 
         function copyEmail() {
+            playFx('success');
             navigator.clipboard.writeText('natthaphon@example.com');
             const toast = document.getElementById('toast');
             toast.classList.add('show');
-            playSound(700);
             setTimeout(() => toast.classList.remove('show'), 2500);
         }
     </script>

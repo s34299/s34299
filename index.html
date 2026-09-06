@@ -59,7 +59,7 @@
         }
 
         body.light-mode {
-            /* === Muted Soft Sage (Low Glare & Eye Comfortable) === */
+            /* === Muted Soft Sage === */
             --bg: #c0dac7;
             --grid: rgba(6, 78, 59, 0.08);
             --blob-1: rgba(167, 243, 208, 0.55);
@@ -212,24 +212,10 @@
             overflow: hidden;
         }
 
-        .card::after {
-            content: '';
-            position: absolute;
-            top: -60%; left: -60%;
-            width: 220%; height: 220%;
-            background: linear-gradient(45deg, transparent 45%, rgba(52, 211, 153, 0.1) 50%, transparent 55%);
-            transform: rotate(30deg) translateY(-100%);
-            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-            pointer-events: none;
-        }
-
-        .card:hover::after {
-            transform: rotate(30deg) translateY(100%);
-        }
-
         .avatar-wrapper {
             position: relative;
-            width: 86px; height: 86px;
+            width: 160px;
+            height: 160px;
             margin: 0 auto 18px;
             cursor: pointer;
             perspective: 600px;
@@ -243,10 +229,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
             font-size: 1.75rem;
             font-weight: 700;
             color: var(--avatar-text);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
             transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* รูปภาพขยายเต็มวงกลม (cover) เน้นจัดตำแหน่งส่วนบน */
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
         }
 
         .avatar-wrapper:hover .avatar {
@@ -255,8 +252,8 @@
 
         .status-dot {
             position: absolute;
-            bottom: 2px; right: 2px;
-            width: 14px; height: 14px;
+            bottom: 6px; right: 6px;
+            width: 18px; height: 18px;
             background-color: #34d399;
             border: 3px solid var(--bg);
             border-radius: 50%;
@@ -299,7 +296,6 @@
             margin: 0 auto 30px;
         }
 
-        /* Tags Selector */
         .tags {
             display: flex;
             flex-wrap: wrap;
@@ -337,7 +333,6 @@
             box-shadow: 0 6px 16px rgba(16, 185, 129, 0.22);
         }
 
-        /* Info Box */
         .info-box {
             background: var(--info-bg);
             border: 1px solid var(--info-border);
@@ -437,22 +432,6 @@
             font-weight: 600;
         }
 
-        .trail {
-            position: fixed;
-            pointer-events: none;
-            width: 5px; height: 5px;
-            border-radius: 50%;
-            background: #a7f3d0;
-            box-shadow: 0 0 8px #34d399;
-            z-index: 9998;
-            animation: fade 0.6s linear forwards;
-        }
-
-        @keyframes fade {
-            0% { opacity: 0.8; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0.2); }
-        }
-
         .toast {
             position: fixed;
             bottom: 25px; left: 50%;
@@ -474,13 +453,6 @@
             transform: translateX(-50%) translateY(0);
             opacity: 1;
         }
-
-        @media (max-width: 600px) {
-            .card { padding: 35px 20px; }
-            h1 { font-size: 1.65rem; }
-            .btn-group { flex-direction: column; }
-            .btn { width: 100%; justify-content: center; }
-        }
     </style>
 </head>
 <body>
@@ -500,7 +472,12 @@
 
     <main class="card">
         <div class="avatar-wrapper">
-            <div class="avatar">NC</div>
+            <div class="avatar">
+                <img src="https://i.postimg.cc/Y24Hr301/ja9.jpg" 
+                     alt="ณัชพล เชียงแรง" 
+                     referrerpolicy="no-referrer" 
+                     onerror="this.style.display='none'; this.parentElement.innerText='NC';">
+            </div>
             <div class="status-dot"></div>
         </div>
 
@@ -571,24 +548,10 @@
         }
 
         const glow = document.getElementById('mouseGlow');
-        let lastTime = 0;
-
         window.addEventListener('mousemove', (e) => {
             glow.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-
-            const now = Date.now();
-            if (now - lastTime > 50) {
-                const t = document.createElement('div');
-                t.className = 'trail';
-                t.style.left = `${e.clientX}px`;
-                t.style.top = `${e.clientY}px`;
-                document.body.appendChild(t);
-                setTimeout(() => t.remove(), 600);
-                lastTime = now;
-            }
         });
 
-        // Interactive Personal Profile Descriptions & Levels
         const skillData = {
             about: { 
                 label: "LEARNING PASSION",
@@ -601,50 +564,47 @@
                 fill: "92%" 
             },
             interests: { 
-                label: "CREATIVE & INNOVATION DRIVE",
-                text: "<b>🌿 ความชอบ:</b> สนใจงานออกแบบเชิงฟังก์ชัน (Functional Design) เทคโนโลยีการเกษตรและสิ่งแวดล้อม รวมถึงการติดตามนวัตกรรม AI & Automation ใหม่ๆ", 
+                label: "CREATIVE & INNOVATION",
+                text: "<b>🌿 ความชอบ:</b> สนใจการติดตามเทคโนโลยีใหม่ๆ นวัตกรรมประหยัดพลังงาน งานออกแบบทางวิศวกรรม และการแก้ปัญหาจริงผ่านระบบอัตโนมัติ", 
                 fill: "88%" 
             },
             dreams: { 
-                label: "GOAL & COMMITMENT",
-                text: "<b>🚀 ความฝัน:</b> มุ่งเป้าสู่การเป็นวิศวกรผู้สร้างสรรค์นวัตกรรมหรือโครงสร้างพื้นฐานที่ยั่งยืน เพื่อสร้างประโยชน์และยกระดับคุณภาพชีวิตของผู้คนในสังคม", 
-                fill: "98%" 
+                label: "FUTURE GOAL",
+                text: "<b>🚀 ความฝัน:</b> มุ่งมั่นเป็นวิศวกรที่สามารถสร้างนวัตกรรมที่มีประโยชน์ต่อสังคม และพัฒนาเทคโนโลยีเพื่อความยั่งยืน", 
+                fill: "95%" 
             }
         };
 
-        function showInfo(type, btn) {
-            playSound(700);
-            document.querySelectorAll('.tag').forEach(b => b.classList.remove('active'));
+        function showInfo(key, btn) {
+            document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
             btn.classList.add('active');
-
-            const box = document.getElementById('infoBox');
-            box.classList.remove('show');
-
+            
+            const infoBox = document.getElementById('infoBox');
+            infoBox.classList.remove('show');
+            
             setTimeout(() => {
-                document.getElementById('infoText').innerHTML = skillData[type].text;
-                document.getElementById('skillLabel').innerText = skillData[type].label;
-                document.getElementById('skillPercent').innerText = skillData[type].fill;
-                document.getElementById('skillFill').style.width = skillData[type].fill;
-                box.classList.add('show');
-            }, 120);
-        }
-
-        function copyEmail() {
-            playSound(850);
-            navigator.clipboard.writeText("nutchapon3780@gmail.com").then(() => showToast());
-        }
-
-        function showToast() {
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2500);
+                document.getElementById('infoText').innerHTML = skillData[key].text;
+                document.getElementById('skillLabel').innerText = skillData[key].label;
+                document.getElementById('skillPercent').innerText = skillData[key].fill;
+                document.getElementById('skillFill').style.width = skillData[key].fill;
+                infoBox.classList.add('show');
+            }, 200);
+            playSound(580);
         }
 
         function toggleTheme() {
-            playSound(400);
             document.body.classList.toggle('light-mode');
-            const icon = document.querySelector('#themeToggle .icon');
-            icon.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
+            const isLight = document.body.classList.contains('light-mode');
+            document.getElementById('themeToggle').querySelector('.icon').innerText = isLight ? '🌙' : '☀️';
+            playSound(isLight ? 440 : 660);
+        }
+
+        function copyEmail() {
+            navigator.clipboard.writeText('natthaphon@example.com');
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            playSound(700);
+            setTimeout(() => toast.classList.remove('show'), 2500);
         }
     </script>
 </body>

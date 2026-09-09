@@ -15,7 +15,6 @@
         }
 
         :root {
-            /* === Dark Emerald Theme (Default) === */
             --bg: #030a08;
             --grid: rgba(52, 211, 153, 0.08);
             --glow-color: rgba(52, 211, 153, 0.4);
@@ -56,7 +55,6 @@
         }
 
         body.light-mode {
-            /* === Light Soft Sage Theme === */
             --bg: #bddec6;
             --grid: rgba(6, 78, 59, 0.1);
             --glow-color: rgba(16, 185, 129, 0.35);
@@ -555,6 +553,7 @@
         <!-- Quick Nav Shortcuts -->
         <div class="quick-nav-container">
             <nav class="quick-nav">
+                <a href="index.html" class="nav-btn" onclick="triggerSparkle(event); playSynthSound('nav')">🏠 หน้าหลัก</a>
                 <a href="aboutme.html" class="nav-btn" onclick="triggerSparkle(event); playSynthSound('nav')">👤 ข้อมูลส่วนตัว & คำนำ</a>
                 <a href="attention.html" class="nav-btn" onclick="triggerSparkle(event); playSynthSound('nav')">💡 ความสนใจ & จุดเด่น</a>
                 <a href="mygoal.html" class="nav-btn" onclick="triggerSparkle(event); playSynthSound('nav')">🎯 เป้าหมาย</a>
@@ -684,8 +683,8 @@
             <a href="mygoal.html" class="back-btn" onclick="triggerSparkle(event); playSynthSound('click')">
                 ⬅ ย้อนกลับ
             </a>
-            <a href="aboutme.html" class="back-btn" onclick="triggerSparkle(event); playSynthSound('click')">
-                กลับสู่หน้าแรก 🏠
+            <a href="index.html" class="back-btn" onclick="triggerSparkle(event); playSynthSound('click')">
+                กลับสู่หน้าหลัก 🏠
             </a>
         </div>
 

@@ -15,7 +15,6 @@
         }
 
         :root {
-            /* === Dark Emerald Theme (Default) === */
             --bg: #030a08;
             --grid: rgba(52, 211, 153, 0.08);
             --glow-color: rgba(52, 211, 153, 0.4);
@@ -56,7 +55,6 @@
         }
 
         body.light-mode {
-            /* === Light Soft Sage Theme === */
             --bg: #bddec6;
             --grid: rgba(6, 78, 59, 0.1);
             --glow-color: rgba(16, 185, 129, 0.35);
@@ -161,7 +159,6 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
             outline: none;
             backdrop-filter: blur(12px);
-            position: relative;
         }
 
         .control-btn:hover {
@@ -294,7 +291,7 @@
             transform: translateY(0) scale(1);
         }
 
-        .preface-card, .about-card {
+        .info-card, .preface-card {
             background: var(--project-bg);
             border: 1px solid var(--project-border);
             padding: 34px 38px;
@@ -303,12 +300,9 @@
             margin-bottom: 32px;
             backdrop-filter: blur(12px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-            position: relative;
-            transform-style: preserve-3d;
-            will-change: transform;
         }
 
-        .preface-card h2, .about-card h2 {
+        .info-card h2, .preface-card h2 {
             color: var(--text-sub);
             font-size: 1.55rem;
             font-weight: 700;
@@ -318,7 +312,33 @@
             gap: 12px;
         }
 
-        .preface-card p {
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .info-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--badge-border);
+            padding: 16px 20px;
+            border-radius: 16px;
+        }
+
+        .info-item strong {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .info-item span {
+            color: var(--text-body);
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .preface-text {
             line-height: 1.85;
             font-size: 1.08rem;
             color: var(--text-body);
@@ -326,98 +346,12 @@
             text-indent: 2.5em;
         }
 
-        .preface-author {
-            text-align: right;
-            margin-top: 22px;
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--text-sub);
-            line-height: 1.6;
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 28px;
-        }
-
-        .about-grid {
-            flex: 1;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px 24px;
-        }
-
-        .about-avatar-wrapper {
-            flex-shrink: 0;
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            border: 3px solid var(--badge-border);
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            background: var(--badge-bg);
-            transition: transform 0.4s ease, border-color 0.3s ease;
-            position: relative;
-        }
-
-        .about-avatar-wrapper:hover {
-            transform: scale(1.08) rotate(3deg);
-            border-color: var(--nav-btn-hover);
-            box-shadow: 0 0 25px var(--glow-color);
-        }
-
-        .about-avatar {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            display: block;
-        }
-
-        .about-item {
-            font-size: 1.05rem;
-            color: var(--text-body);
-            line-height: 1.6;
-        }
-
-        .about-item strong {
-            color: var(--text-sub);
-        }
-
-        .contact-list {
-            grid-column: span 2;
-            margin-top: 8px;
-            padding-top: 16px;
-            border-top: 1px dashed var(--project-border);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .contact-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px 24px;
-        }
-
-        .contact-link {
-            color: var(--text-body);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 500;
-        }
-
-        .contact-link:hover {
-            color: var(--text-sub);
-            transform: translateX(3px);
-        }
-
         .btn-container {
             margin-top: 35px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .back-btn {
@@ -470,10 +404,8 @@
             .quick-nav::-webkit-scrollbar { display: none; }
             .nav-btn { font-size: 0.82rem; padding: 6px 12px; }
             h1 { font-size: 2.1rem; }
-            .preface-card, .about-card { padding: 22px 18px; }
-            .about-content { flex-direction: column-reverse; gap: 20px; }
-            .about-avatar-wrapper { width: 130px; height: 130px; }
-            .about-grid { grid-template-columns: 1fr; width: 100%; }
+            .info-grid { grid-template-columns: 1fr; }
+            .info-card, .preface-card { padding: 22px 18px; }
             .back-btn { width: 100%; }
         }
     </style>
@@ -499,9 +431,10 @@
     </div>
 
     <main class="card">
-        <!-- Navigation Menu Bar -->
+        <!-- Quick Nav Shortcuts -->
         <div class="quick-nav-container">
             <nav class="quick-nav">
+                <a href="index.html" class="nav-btn" onclick="triggerSparkle(event); playSynthSound('nav')">🏠 หน้าหลัก</a>
                 <a href="aboutme.html" class="nav-btn active" onclick="triggerSparkle(event); playSynthSound('nav')">👤 ข้อมูลส่วนตัว & คำนำ</a>
                 <a href="attention.html" class="nav-btn" onclick="triggerSparkle(event); playSynthSound('nav')">💡 ความสนใจ & จุดเด่น</a>
                 <a href="mygoal.html" class="nav-btn" onclick="triggerSparkle(event); playSynthSound('nav')">🎯 เป้าหมาย</a>
@@ -510,49 +443,45 @@
         </div>
 
         <h1>👤 ข้อมูลส่วนตัว & คำนำ</h1>
-        <p class="subtitle">แนะนำตัวเอง ประวัติส่วนตัว และคำนำสำหรับแฟ้มสะสมงาน</p>
+        <p class="subtitle">ทำความรู้จักและเรื่องราวการเรียนรู้ของ ณัชพล เชียงแรง</p>
         <div class="line"></div>
 
         <!-- Preface Section -->
         <section id="preface" class="preface-card reveal">
-            <h2>📝 คำนำ</h2>
-            <p>
-                แฟ้มสะสมงาน (Portfolio) ฉบับนี้ จัดทำขึ้นเพื่อสะสมผลงาน โครงงาน และกิจกรรมต่างๆ ที่ข้าพเจ้าได้ตั้งใจศึกษาและฝึกฝนด้วยความมุ่งมั่น โดยมีวัตถุประสงค์เพื่อสะท้อนถึงความรู้ ทักษะกระบวนการคิดเชิงวิศวกรรม และความหลงใหลในการพัฒนาตนเองอย่างต่อเนื่อง ข้าพเจ้าหวังเป็นอย่างยิ่งว่าแฟ้มสะสมงานเล่มนี้ จะช่วยแสดงให้เห็นถึงศักยภาพ ความตั้งใจจริง และความพร้อมของข้าพเจ้าสำหรับการเรียนรู้และการสร้างสรรค์ประโยชน์ในอนาคต
+            <h2>📜 คำนำ (Preface)</h2>
+            <p class="preface-text">
+                แฟ้มสะสมผลงาน (Portfolio) เล่มนี้ จัดทำขึ้นเพื่อนำเสนอประวัติ ความรู้ ความสามารถ ทักษะ ตลอดจนกิจกรรมและผลงานต่างๆ ของข้าพเจ้า เพื่อแสดงถึงความมุ่งมั่น ตั้งใจ และความพร้อมสำหรับการศึกษาต่อในระดับอุดมศึกษา หวังเป็นอย่างยิ่งว่าแฟ้มสะสมผลงานเล่มนี้จะทำให้ทุกท่านได้เห็นถึงศักยภาพและความหลงใหลในการเรียนรู้ของข้าพเจ้า
             </p>
-            <div class="preface-author">
-                นายณัชพล เชียงแรง<br>
-                <span>ผู้จัดทำ</span>
-            </div>
         </section>
 
-        <!-- About Me Section -->
-        <section id="about" class="about-card reveal">
-            <h2>👤 ข้อมูลส่วนตัว (About Me)</h2>
-            <div class="about-content">
-                <div class="about-grid">
-                    <div class="about-item"><strong>ชื่อ-นามสกุล:</strong> นายณัชพล เชียงแรง</div>
-                    <div class="about-item"><strong>ชื่อเล่น:</strong> เจมส์</div>
-                    <div class="about-item"><strong>วันเดือนปีเกิด:</strong> 4 มิถุนายน 2552</div>
-                    <div class="about-item"><strong>อายุ:</strong> 17 ปี</div>
-                    <div class="about-item"><strong>แผนการเรียน:</strong> MSEP</div>
-
-                    <div class="contact-list">
-                        <strong style="color: var(--text-sub);">ช่องทางการติดต่อ:</strong>
-                        <div class="contact-items">
-                            <a href="tel:0822303780" class="contact-link" onclick="playSynthSound('click')">📱 082-230-3780</a>
-                            <a href="https://facebook.com" target="_blank" class="contact-link" onclick="playSynthSound('click')">🌐 Facebook: Jamie Ncj</a>
-                            <a href="mailto:nutchapon3780@gmail.com" class="contact-link" onclick="playSynthSound('click')">✉️ nutchapon3780@gmail.com</a>
-                        </div>
-                    </div>
+        <!-- Personal Info Section -->
+        <section id="personal-info" class="info-card reveal">
+            <h2>📌 ข้อมูลส่วนตัว (Personal Information)</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>ชื่อ-นามสกุล:</strong>
+                    <span>นายณัชพล เชียงแรง (เจมส์)</span>
                 </div>
-
-                <div class="about-avatar-wrapper">
-                    <img src="https://i.postimg.cc/Y24Hr301/ja9.jpg" data-local="ja9.jpg" alt="นายณัฐพล เชียงแรง" class="about-avatar" onerror="handleImgError(this)">
+                <div class="info-item">
+                    <strong>ระดับการศึกษา:</strong>
+                    <span>มัธยมศึกษาตอนปลาย</span>
+                </div>
+                <div class="info-item">
+                    <strong>แผนการเรียน:</strong>
+                    <span>วิทยาศาสตร์ - คณิตศาสตร์</span>
+                </div>
+                <div class="info-item">
+                    <strong>คติประจำใจ:</strong>
+                    <span>"การเรียนรู้ไม่มีวันสิ้นสุด"</span>
                 </div>
             </div>
         </section>
 
+        <!-- Navigation Buttons -->
         <div class="btn-container">
+            <a href="index.html" class="back-btn" onclick="triggerSparkle(event); playSynthSound('click')">
+                🏠 กลับสู่หน้าหลัก
+            </a>
             <a href="attention.html" class="back-btn" onclick="triggerSparkle(event); playSynthSound('click')">
                 ถัดไป: ความสนใจ & จุดเด่น ➡
             </a>
@@ -822,18 +751,6 @@
             document.body.classList.toggle('light-mode');
             const icon = document.querySelector('#themeToggle .icon');
             icon.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
-        }
-
-        function handleImgError(img) {
-            if (!img.dataset.failedOnce) {
-                img.dataset.failedOnce = "true";
-                if (img.dataset.local) {
-                    img.src = "./" + img.dataset.local;
-                    return;
-                }
-            }
-            img.onerror = null;
-            img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250"><rect width="100%" height="100%" fill="%230b2b22"/><text x="50%" y="45%" font-family="sans-serif" font-size="28" fill="%2334d399" text-anchor="middle">🖼️</text><text x="50%" y="65%" font-family="sans-serif" font-size="14" fill="%236ee7b7" text-anchor="middle">ภาพโปรไฟล์</text></svg>';
         }
     </script>
 </body>

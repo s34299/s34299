@@ -511,7 +511,7 @@
         .btn-group {
             display: flex;
             justify-content: center;
-            gap: 14px;
+            gap: 12px;
             flex-wrap: wrap;
             margin-bottom: 30px;
             position: relative;
@@ -522,12 +522,12 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 14px 28px;
+            padding: 12px 22px;
             background: var(--btn-main-bg);
             color: var(--btn-main-text);
             text-decoration: none;
             border-radius: 25px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             cursor: pointer;
             pointer-events: auto;
@@ -664,13 +664,20 @@
                 </div>
             </div>
 
+            <!-- กลุ่มปุ่มทางลัดไปยังแต่ละหน้า -->
             <div class="btn-group">
-                <a href="portfolio.html" class="btn" onmouseenter="playFx('hover')" onclick="playFx('click')">
-                    เข้าสู่ Portfolio <span>→</span>
+                <a href="aboutme.html" class="btn btn-sec" onmouseenter="playFx('hover')" onclick="playFx('click')">
+                    👤 เกี่ยวกับฉัน
                 </a>
-                <button class="btn btn-sec" onmouseenter="playFx('hover')" onclick="copyEmail()">
-                    📫 คัดลอกอีเมลติดต่อ
-                </button>
+                <a href="attention.html" class="btn btn-sec" onmouseenter="playFx('hover')" onclick="playFx('click')">
+                    💡 สิ่งที่สนใจ
+                </a>
+                <a href="mygoal.html" class="btn btn-sec" onmouseenter="playFx('hover')" onclick="playFx('click')">
+                    🎯 เป้าหมาย
+                </a>
+                <a href="portfolio.html" class="btn" onmouseenter="playFx('hover')" onclick="playFx('click')">
+                    📁 Portfolio <span>→</span>
+                </a>
             </div>
 
             <footer class="footer">
@@ -690,7 +697,6 @@
         let fadeInterval = null;
 
         function startDelayedPlayback() {
-            // ตั้งเวลาหน่วง 2,000 มิลลิวินาที (2 วินาที) หลังเปิดหน้าเว็บ
             setTimeout(() => {
                 initAudio();
                 lofiAudio.volume = DEFAULT_VOLUME;
@@ -703,7 +709,6 @@
                     console.log("Autoplay blocked by browser policy:", err);
                     musicStatusText.innerText = "คลิกเพื่อเปิดเพลง";
 
-                    // ระบบสำรอง: ปลดล็อกเสียงอัตโนมัติเมื่อผู้ใช้ขยับเมาส์หรือแตะหน้าจอครั้งแรก
                     const unlockEvents = ['mousemove', 'mousedown', 'touchstart', 'keydown', 'scroll'];
                     const enableAudioOnInteraction = () => {
                         lofiAudio.play().then(() => {
@@ -981,14 +986,6 @@
             document.body.classList.toggle('light-mode');
             const isLight = document.body.classList.contains('light-mode');
             document.getElementById('themeToggle').querySelector('.icon').innerText = isLight ? '🌙' : '☀️';
-        }
-
-        function copyEmail() {
-            playFx('success');
-            navigator.clipboard.writeText('natthaphon@example.com');
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2500);
         }
     </script>
 </body>

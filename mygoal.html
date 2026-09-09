@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="My Education & Future Goals - Natthaphon Chiangrang">
+    <title>เป้าหมายการศึกษา & อนาคต | Natthaphon Chiangrang</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        :root {
+            --bg: #030a08;
+            --grid: rgba(52, 211, 153, 0.08);
+            --glow-color: rgba(52, 211, 153, 0.4);
+            
+            --card-bg: rgba(10, 25, 20, 0.85);
+            --card-border: rgba(52, 211, 153, 0.3);
+            --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+            --card-glow: rgba(52, 211, 153, 0.18);
+            
+            --text-title: linear-gradient(135deg, #ffffff 30%, #a7f3d0 70%, #34d399 100%);
+            --text-sub: #6ee7b7;
+            --text-body: #d1fae5;
+            
+            --badge-bg: rgba(52, 211, 153, 0.15);
+            --badge-border: rgba(52, 211, 153, 0.35);
+            --badge-text: #6ee7b7;
+            
+            --project-bg: rgba(6, 45, 35, 0.45);
+            --project-border: rgba(52, 211, 153, 0.3);
+            
+            --btn-main-bg: linear-gradient(135deg, #34d399, #10b981);
+            --btn-main-text: #022c22;
+            --btn-main-hover: #6ee7b7;
+            
+            --toggle-bg: rgba(10, 25, 20, 0.9);
+            --toggle-border: rgba(52, 211, 153, 0.5);
+
+            --nav-bg: rgba(4, 20, 16, 0.85);
+            --nav-btn-bg: rgba(52, 211, 153, 0.08);
+            --nav-btn-border: rgba(52, 211, 153, 0.25);
+            --nav-btn-hover: #34d399;
+            --nav-btn-hover-text: #022c22;
+        }
+
+        body.light-mode {
+            --bg: #bddec6;
+            --grid: rgba(6, 78, 59, 0.1);
+            --glow-color: rgba(16, 185, 129, 0.35);
+            
+            --card-bg: rgba(236, 248, 239, 0.94);
+            --card-border: rgba(4, 120, 87, 0.25);
+            --card-shadow: 0 20px 45px rgba(6, 78, 59, 0.15);
+            --card-glow: rgba(16, 185, 129, 0.15);
+            
+            --text-title: linear-gradient(135deg, #022c22 20%, #047857 80%);
+            --text-sub: #047857;
+            --text-body: #062b1e;
+            
+            --badge-bg: rgba(16, 185, 129, 0.18);
+            --badge-border: rgba(4, 120, 87, 0.35);
+            --badge-text: #047857;
+            
+            --project-bg: rgba(210, 235, 218, 0.8);
+            --project-border: rgba(4, 120, 87, 0.3);
+            
+            --btn-main-bg: linear-gradient(135deg, #047857, #065f46);
+            --btn-main-text: #ffffff;
+            --btn-main-hover: #022c22;
+            
+            --toggle-bg: rgba(236, 248, 239, 0.95);
+            --toggle-border: rgba(4, 120, 87, 0.4);
+
+            --nav-bg: rgba(218, 238, 224, 0.9);
+            --nav-btn-bg: rgba(4, 120, 87, 0.08);
+            --nav-btn-border: rgba(4, 120, 87, 0.25);
+            --nav-btn-hover: #047857;
+            --nav-btn-hover-text: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Sarabun', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+            background-color: var(--bg);
+            color: var(--text-body);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        #scrollProgress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 0%;
+            background: linear-gradient(90deg, #34d399, #6ee7b7, #10b981);
+            box-shadow: 0 0 12px var(--glow-color);
+            z-index: 10000;
+        }
+
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .controls-wrapper {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--toggle-bg);
+            border: 1px solid var(--toggle-border);
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.25rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            outline: none;
+            backdrop-filter: blur(12px);
+        }
+
+        .control-btn:hover {
+            transform: scale(1.12) rotate(8deg);
+            border-color: var(--nav-btn-hover);
+        }
+
+        .control-btn.playing {
+            animation: pulseGlow 2s infinite ease-in-out;
+            border-color: #34d399;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 8px var(--glow-color); }
+            50% { box-shadow: 0 0 20px var(--glow-color); }
+        }
+
+        .card {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 980px;
+            background: var(--card-bg);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 40px 50px 55px;
+            text-align: center;
+            box-shadow: var(--card-shadow), 0 0 40px var(--card-glow);
+            overflow: hidden;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .quick-nav-container {
+            position: sticky;
+            top: 15px;
+            z-index: 100;
+            margin: -10px -10px 35px -10px;
+            padding: 10px 14px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--card-border);
+            border-radius: 22px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .quick-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-sub);
+            background: var(--nav-btn-bg);
+            border: 1px solid var(--nav-btn-border);
+            border-radius: 30px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-btn.active, .nav-btn:hover {
+            background: var(--nav-btn-hover);
+            color: var(--nav-btn-hover-text);
+            border-color: var(--nav-btn-hover);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 16px var(--glow-color);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: var(--text-title);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-sub);
+            margin-bottom: 28px;
+        }
+
+        .line {
+            width: 120px;
+            height: 4px;
+            background: var(--btn-main-bg);
+            margin: 0 auto 35px;
+            border-radius: 4px;
+            box-shadow: 0 0 15px var(--glow-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .line::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            animation: lightSweep 2.5s infinite;
+        }
+
+        @keyframes lightSweep {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px) scale(0.98);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .education-card, .goals-card {
+            background: var(--project-bg);
+            border: 1px solid var(--project-border);
+            padding: 34px 38px;
+            border-radius: 22px;
+            text-align: left;
+            margin-bottom: 32px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .education-card h2, .goals-card h2 {
+            color: var(--text-sub);
+            font-size: 1.55rem;
+            font-weight: 700;
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .target-box {
+            padding: 22px 26px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--badge-border);
+            border-radius: 18px;
+            margin-bottom: 20px;
+        }
+
+        .target-box h3 {
+            font-size: 1.25rem;
+            color: var(--text-sub);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .target-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            color: var(--badge-text);
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin: 4px 4px 0 0;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .target-badge:hover {
+            transform: scale(1.08);
+            background: var(--btn-main-bg);
+            color: var(--btn-main-text);
+        }
+
+        .reason-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-sub);
+            margin-bottom: 10px;
+        }
+
+        .reason-text, .goals-card p {
+            line-height: 1.85;
+            font-size: 1.08rem;
+            color: var(--text-body);
+            opacity: 0.95;
+            text-indent: 2.5em;
+        }
+
+        .btn-container {
+            margin-top: 35px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 38px;
+            background: var(--btn-main-bg);
+            color: var(--btn-main-text);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px var(--glow-color);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 14px 35px var(--glow-color);
+        }
+
+        .footer {
+            margin-top: 40px;
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            border-top: 1px solid var(--card-border);
+            padding-top: 24px;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        #sparkleCanvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 99999;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .card { padding: 25px 18px; }
+            .quick-nav-container { margin: 0 0 25px 0; padding: 8px; }
+            .quick-nav { justify-content: flex-start; overflow-x: auto; padding-bottom: 4px; }
+            .quick-nav::-webkit-scrollbar { display: none; }
+            .nav-btn { font-size: 0.82rem; padding: 6px 12px; }
+            h1 { font-size: 2.1rem; }
+            .education-card, .goals-card { padding: 22px 18px; }
+            .back-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scrollProgress"></div>
+    <canvas id="particleCanvas"></canvas>
+    <canvas id="sparkleCanvas"></canvas>
+
+    <audio id="bgMusic" loop preload="auto" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio>
+
+    <div class="controls-wrapper">
+        <button class="control-btn" id="musicToggle" title="เปิด/หยุดเพลง Lo-Fi" onclick="toggleMusic()">
+            <span id="musicIcon">🎵</span>
+        </button>
+        <button class="control-btn" id="soundToggle" title="เปิด/ปิด เอฟเฟกต์เสียง" onclick="toggleSound()">
+            <span id="soundIcon">🔊</span>
+        </button>
+        <button class="control-btn" id="themeToggle" title="สลับโหมดแสง" onclick="toggleTheme()">
+            <span class="icon">☀️</span>
+        </button>
+    </div>
+
+    <main class="card">
+        <!-- Quick Nav Shortcuts -->
+        <div class="quick-nav-container">
+            <nav class="quick-nav">
+                <a href="aboutme.html" class="nav-btn" onclick="triggerSparkle(event); playSynthSound('nav')">👤 ข้อมูลส่วนตัว & คำนำ</a>
+                <a href="attention.html" class="nav-btn" onclick="triggerSparkle(event); playSynthSound('nav')">💡 ความสนใจ & จุดเด่น</a>
+                <a href="mygoal.html" class="nav-btn active" onclick="triggerSparkle(event); playSynthSound('nav')">🎯 เป้าหมาย</a>
+                <a href="portfolio.html" class="nav-btn" onclick="triggerSparkle(event); playSynthSound('nav')">🏆 ผลงาน & ขอบคุณ</a>
+            </nav>
+        </div>
+
+        <h1>🎯 เป้าหมายการศึกษา & อนาคต</h1>
+        <p class="subtitle">เส้นทางสู่ความสำเร็จและความมุ่งมั่นในสายอาชีพบัญชีและวิศวกรรมศาสตร์</p>
+        <div class="line"></div>
+
+        <!-- Education Target Section -->
+        <section id="education" class="education-card reveal">
+            <h2>🏛️ เป้าหมายการศึกษาต่อ (Education Target)</h2>
+            <div class="target-box">
+                <h3>จุฬาลงกรณ์มหาวิทยาลัย — คณะวิศวกรรมศาสตร์</h3>
+                <div class="major-list">
+                    <span class="target-badge" onclick="triggerSparkle(event); playSynthSound('sparkle')">สาขาวิศวกรรมเคมี ✨</span>
+                    <span class="target-badge" onclick="triggerSparkle(event); playSynthSound('sparkle')">สาขาวิศวกรรมทั่วไป ✨</span>
+                </div>
+            </div>
+
+            <div class="reason-title">📌 เหตุผลที่สนใจศึกษาต่อ</div>
+            <p class="reason-text">
+                จุฬาลงกรณ์มหาวิทยาลัยเป็นสถาบันชั้นนำด้านวิศวกรรมศาสตร์ที่มีหลักสูตรเข้มข้น เพียบพร้อมด้วยห้องปฏิบัติการและเทคโนโลยีที่ทันสมัย ทั้งยังมุ่งเน้นการวิจัยและพัฒนาเพื่อนำไปประยุกต์ใช้ได้จริงในระดับอุตสาหกรรม การศึกษาในหลักสูตรวิศวกรรมทั่วไปจะช่วยสร้างพื้นฐานการคำนวณและกระบวนการคิดทางวิศวกรรมที่แข็งแกร่ง ก่อนมุ่งสู่สาขาวิศวกรรมเคมี ซึ่งเป็นศาสตร์ที่ต่อยอดความรู้ด้านคณิตศาสตร์ ฟิสิกส์ และเคมีอย่างลงตัว เพื่อออกแบบและพัฒนากระบวนการผลิต ตอบโจทย์ความท้าทายระดับโลก ทั้งด้านพลังงานสะอาด สิ่งแวดล้อม และนวัตกรรมวัสดุแห่งอนาคต
+            </p>
+        </section>
+
+        <!-- Goals Section -->
+        <section id="goals" class="goals-card reveal">
+            <h2>🎯 เป้าหมายอนาคตของฉัน (My Future Goals)</h2>
+            <p>
+                มุ่งมั่นศึกษาและพัฒนาทักษะทางวิศวกรรมอย่างรอบด้าน ทั้งการลงมือปฏิบัติจริงในห้องทดลอง การคิดวิเคราะห์ข้อมูลเชิงลึก และการแก้ไขโจทย์ปัญหาที่ซับซ้อนอย่างมีระบบ เพื่อสร้างรากฐานที่มั่นคงสำหรับการศึกษาต่อในระดับอุดมศึกษา ตลอดจนการพัฒนาตนเองสู่การเป็น "วิศวกรมืออาชีพ" ที่มีความเชี่ยวชาญ มีจริยธรรม และพร้อมขับเคลื่อนนวัตกรรมที่เป็นประโยชน์ต่อสังคมในอนาคต
+            </p>
+        </section>
+
+        <!-- Navigation Buttons -->
+        <div class="btn-container">
+            <a href="attention.html" class="back-btn" onclick="triggerSparkle(event); playSynthSound('click')">
+                ⬅ ย้อนกลับ
+            </a>
+            <a href="portfolio.html" class="back-btn" onclick="triggerSparkle(event); playSynthSound('click')">
+                ถัดไป: ผลงาน & ขอบคุณ ➡
+            </a>
+        </div>
+
+        <footer class="footer">
+            BUILDING KNOWLEDGE • CREATING INNOVATION
+        </footer>
+    </main>
+
+    <script>
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggleBtn = document.getElementById('musicToggle');
+        const musicIcon = document.getElementById('musicIcon');
+        let isMusicPlaying = false;
+
+        function updateMusicUI(playing) {
+            isMusicPlaying = playing;
+            if (playing) {
+                musicIcon.textContent = '🎵';
+                musicToggleBtn.classList.add('playing');
+                musicToggleBtn.title = "หยุดเพลง Lo-Fi";
+            } else {
+                musicIcon.textContent = '⏸️';
+                musicToggleBtn.classList.remove('playing');
+                musicToggleBtn.title = "เล่นเพลง Lo-Fi";
+            }
+        }
+
+        function playLoFiMusic() {
+            if (!bgMusic) return;
+            bgMusic.volume = 0.15;
+            bgMusic.play().then(() => {
+                updateMusicUI(true);
+            }).catch(() => {
+                updateMusicUI(false);
+                const enableOnUserAction = () => {
+                    bgMusic.play().then(() => updateMusicUI(true)).catch(() => {});
+                    window.removeEventListener('click', enableOnUserAction);
+                    window.removeEventListener('touchstart', enableOnUserAction);
+                    window.removeEventListener('scroll', enableOnUserAction);
+                };
+                window.addEventListener('click', enableOnUserAction, { once: true });
+                window.addEventListener('touchstart', enableOnUserAction, { once: true });
+                window.addEventListener('scroll', enableOnUserAction, { once: true });
+            });
+        }
+
+        function toggleMusic() {
+            playSynthSound('click');
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                updateMusicUI(false);
+            } else {
+                bgMusic.play().then(() => updateMusicUI(true));
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => { playLoFiMusic(); }, 1200);
+        });
+
+        let audioMuted = false;
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) audioCtx = new AudioContext();
+            }
+        }
+
+        function playSynthSound(type) {
+            if (audioMuted) return;
+            initAudio();
+            if (!audioCtx) return;
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            const now = audioCtx.currentTime;
+
+            if (type === 'hover') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(320, now);
+                osc.frequency.exponentialRampToValueAtTime(580, now + 0.06);
+                gain.gain.setValueAtTime(0.015, now);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.06);
+                osc.start(now);
+                osc.stop(now + 0.06);
+            } else if (type === 'click' || type === 'nav') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(520, now);
+                osc.frequency.exponentialRampToValueAtTime(220, now + 0.08);
+                gain.gain.setValueAtTime(0.04, now);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.08);
+                osc.start(now);
+                osc.stop(now + 0.08);
+            } else if (type === 'sparkle') {
+                [600, 800, 1050, 1300].forEach((freq, idx) => {
+                    const o = audioCtx.createOscillator();
+                    const g = audioCtx.createGain();
+                    o.connect(g);
+                    g.connect(audioCtx.destination);
+                    o.type = 'sine';
+                    o.frequency.setValueAtTime(freq, now + idx * 0.04);
+                    g.gain.setValueAtTime(0.03, now + idx * 0.04);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.04 + 0.12);
+                    o.start(now + idx * 0.04);
+                    o.stop(now + idx * 0.04 + 0.12);
+                });
+            }
+        }
+
+        function toggleSound() {
+            audioMuted = !audioMuted;
+            document.getElementById('soundIcon').textContent = audioMuted ? '🔇' : '🔊';
+            if (!audioMuted) playSynthSound('sparkle');
+        }
+
+        const pCanvas = document.getElementById('particleCanvas');
+        const pCtx = pCanvas.getContext('2d');
+        let particles = [];
+        let mouseX = -1000, mouseY = -1000;
+
+        function resizeCanvas() {
+            pCanvas.width = window.innerWidth;
+            pCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * pCanvas.width;
+                this.y = Math.random() * pCanvas.height;
+                this.size = Math.random() * 2 + 0.8;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = (Math.random() - 0.5) * 0.6;
+                this.alpha = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > pCanvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > pCanvas.height) this.vy *= -1;
+
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 140) {
+                    this.x += dx * 0.02;
+                    this.y += dy * 0.02;
+                }
+            }
+            draw() {
+                pCtx.beginPath();
+                pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                pCtx.fillStyle = document.body.classList.contains('light-mode') 
+                    ? `rgba(4, 120, 87, ${this.alpha})` 
+                    : `rgba(52, 211, 153, ${this.alpha})`;
+                pCtx.fill();
+            }
+        }
+
+        for (let i = 0; i < 55; i++) particles.push(new Particle());
+
+        function animateParticles() {
+            pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+            particles.forEach((p) => { p.update(); p.draw(); });
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 110) {
+                        pCtx.beginPath();
+                        pCtx.moveTo(particles[i].x, particles[i].y);
+                        pCtx.lineTo(particles[j].x, particles[j].y);
+                        pCtx.strokeStyle = document.body.classList.contains('light-mode')
+                            ? `rgba(4, 120, 87, ${0.15 - dist/110 * 0.15})`
+                            : `rgba(52, 211, 153, ${0.18 - dist/110 * 0.18})`;
+                        pCtx.lineWidth = 0.8;
+                        pCtx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        const sCanvas = document.getElementById('sparkleCanvas');
+        const sCtx = sCanvas.getContext('2d');
+        let sparkles = [];
+
+        function resizeSparkle() {
+            sCanvas.width = window.innerWidth;
+            sCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeSparkle);
+        resizeSparkle();
+
+        function triggerSparkle(e) {
+            const x = e.clientX || window.innerWidth / 2;
+            const y = e.clientY || window.innerHeight / 2;
+
+            for (let i = 0; i < 28; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 6 + 2;
+                sparkles.push({
+                    x, y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    size: Math.random() * 4 + 2,
+                    color: `hsl(${Math.random() * 60 + 130}, 90%, 65%)`,
+                    life: 1
+                });
+            }
+        }
+
+        function animateSparkles() {
+            sCtx.clearRect(0, 0, sCanvas.width, sCanvas.height);
+            sparkles.forEach((s, index) => {
+                s.x += s.vx;
+                s.y += s.vy;
+                s.vy += 0.12;
+                s.life -= 0.025;
+
+                sCtx.beginPath();
+                sCtx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                sCtx.fillStyle = s.color;
+                sCtx.globalAlpha = Math.max(0, s.life);
+                sCtx.fill();
+
+                if (s.life <= 0) sparkles.splice(index, 1);
+            });
+            requestAnimationFrame(animateSparkles);
+        }
+        animateSparkles();
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+        });
+
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => observer.observe(el));
+
+        function toggleTheme() {
+            playSynthSound('click');
+            document.body.classList.toggle('light-mode');
+            const icon = document.querySelector('#themeToggle .icon');
+            icon.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
+        }
+    </script>
+</body>
+</html>
